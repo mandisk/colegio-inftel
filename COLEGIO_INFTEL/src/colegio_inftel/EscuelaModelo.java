@@ -13,6 +13,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
+import javax.swing.event.*;
 
 /**
  *
@@ -30,7 +31,7 @@ public JTable tabla = new JTable(modelo);
     public EscuelaModelo(){
     
     }
-   
+ 
    
     /** Se establece la conexion con la base de datos */
     public void estableceConexion()
@@ -102,29 +103,52 @@ public JTable tabla = new JTable(modelo);
 estableceConexion();
 vaciaFilasModelo();
 //El siguiente paso es realizar la consulta y obtener el ResultSet. El código es el siguiente
-
-ResultSet rs = dameListaPersonas(curso,grupo,asignatura);
+try{
+ ResultSet rs = dameListaPersonas(curso,grupo,asignatura);
  
 //Para meter los datos en el JTable, usaremos la clase DefaultTableModel. Para ello basta con instanciar el JTable como se muestra en el codigo
  
 //Ahora sólo hay que rellenar el DefaultTableModel con los datos del ResultSet.
  
-// Creamos las columnas.
-modelo.addColumn("Nombre");
-modelo.addColumn("Primer Apellido");
-modelo.addColumn("Segundo Apellido");
-modelo.addColumn("Faltas");
-modelo.addColumn("Retrasos");
-modelo.addColumn("Sanciones");
-modelo.addColumn("Nota 1ºT");
-modelo.addColumn("Nota 2ºT");
-modelo.addColumn("Nota 3ºT");
-modelo.addColumn("Nota final");
 
+// Creamos las columnas.
+//modelo.addColumn("Nombre");
+//modelo.addColumn("Primer Apellido");
+//modelo.addColumn("Segundo Apellido");
+//modelo.addColumn("Faltas");
+//modelo.addColumn("Retrasos");
+//modelo.addColumn("Sanciones");
+//modelo.addColumn("Nota 1ºT");
+//modelo.addColumn("Nota 2ºT");
+//modelo.addColumn("Nota 3ºT");
+//modelo.addColumn("Nota final");
+Object[] columnas = new Object[10];
+columnas[0]="Nombre";
+columnas[1]="Primer Apellido";
+columnas[2]="Segundo Apellido";
+columnas[3]="Faltas";
+columnas[4]="Retrasos";
+columnas[5]="Sanciones";
+columnas[6]="Nota 1ºT";
+columnas[7]="Nota 2ºT";
+columnas[8]="Nota 3ºT";
+columnas[9]="Nota final";
+modelo.setColumnIdentifiers(columnas);
 
  
+
+
 // Recorremos los registros con un ciclo while
-try{
+// Se hace en un invokeAndWait para que este c�digo se ejecute
+            // en el hilo de refresco de ventanas, evitando que salten
+            // excepciones.
+        //   SwingUtilities.invokeAndWait(new Runnable()
+        //    {
+
+          //      public void run()
+            //    {
+                  //  try
+                 //   {
 while (rs.next())
 {
    // Se crea un array que será una de las filas de la tabla.
@@ -137,12 +161,20 @@ while (rs.next())
 
    // Se añade al modelo la fila completa.
    modelo.addRow(fila);
+    
+         
 }
+//}catch (Exception e)
+  //      {
+    //        e.printStackTrace();
+      //  }
+        //        }
+          //  });
+
 }catch (Exception e)
         {
             e.printStackTrace();
         }
-
     }   
 
   
@@ -152,26 +184,33 @@ while (rs.next())
      */
     public void vaciaFilasModelo()
     {
-        // La llamada se hace in un invokeAndWait para que se ejecute en el
+       // La llamada se hace in un invokeAndWait para que se ejecute en el
         // hilo de refresco de ventanas y evitar que salten excepciones
         // durante dicho refresco.
-        //try
-       // {
-         //   SwingUtilities.invokeAndWait(new Runnable()
-          //  {
-
-            //    public void run()
-              //  {
-                    while (modelo.getRowCount() > 0)
+        try
+        {
+    //    if (SwingUtilities.isEventDispatchThread()) {
+   // Aqui llamas al metodo
+             while (modelo.getRowCount() > 0)
                         modelo.removeRow(0);
-                    
-              //  }
+     //   }
+     //   else{
+    //        SwingUtilities.invokeAndWait(new Runnable()
+     //       {
 
-          //  });
-      //  } catch (Exception e)
-     //   {
-       //     e.printStackTrace();
-      //  }
+       //         public void run()
+         //       {
+           //         while (modelo.getRowCount() > 0)
+//                        modelo.removeRow(0);
+           //     }
+
+         //   });
+          
+       // }
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 
    
