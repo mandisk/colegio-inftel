@@ -18,8 +18,7 @@ public class ConfigBD {
 
     private Properties p;
 
-    private String servidor;
-    private String puerto;
+    private String uri;
     private String usuario;
     private String clave;
 
@@ -38,8 +37,7 @@ public class ConfigBD {
             System.out.println("Error leyendo fichero configuración: "+ ex.getMessage());
         }
 
-        servidor=p.getProperty("servidor");
-        puerto  =p.getProperty("puerto");
+        uri     =p.getProperty("uri");
         usuario =p.getProperty("usuario");
         clave   =p.getProperty("clave");
 
@@ -49,13 +47,10 @@ public class ConfigBD {
         return clave;
     }
 
-    public String getPuerto() {
-        return puerto;
+    public String getUri() {
+        return uri;
     }
 
-    public String getServidor() {
-        return servidor;
-    }
 
     public String getUsuario() {
         return usuario;
