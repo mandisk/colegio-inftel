@@ -10,7 +10,7 @@
  */
 package colegio_inftel;
 import java.awt.event.ActionListener;
-
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,11 +21,13 @@ public class EscuelaVistaPrincipal extends javax.swing.JFrame {
     /** Creates new form EscuelaVistaPrincipal */
     public EscuelaVistaPrincipal(EscuelaModelo modelo) {
         m_modelo = modelo;
+        //DefaultTableModel model = new DefaultTableModel();
         //m_modelo.obtenerDatos(tablaNotas);
        // jTable1 = m_modelo.obtenerDatos();
         // Se mete todo en un try por los posibles errores de MySQL
         m_modelo.rellenaTabla(1,1,1);
       // copiarDatos(m_modelo.tabla,jTable1);
+        
         
         initComponents();
     }
@@ -398,13 +400,13 @@ public class EscuelaVistaPrincipal extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
  
    public int getCurso() {
-       return comboCurso.getSelectedIndex();
+       return comboCurso.getSelectedIndex()+1;
     }
    public int getGrupo(){
-   return comboGrupo.getSelectedIndex();
+   return comboGrupo.getSelectedIndex()+1;
    }
    public int getAsignatura(){
-   return comboAsignatura.getSelectedIndex();
+   return comboAsignatura.getSelectedIndex()+1;
    }
    public String getNombre(){
    return textNombre.getText();
