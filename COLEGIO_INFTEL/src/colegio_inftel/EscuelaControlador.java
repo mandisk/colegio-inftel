@@ -5,6 +5,11 @@
 package colegio_inftel;
 import java.awt.event.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+import javax.swing.table.TableModel;
+import javax.swing.RowFilter;
+import javax.swing.event.DocumentListener;
+import javax.swing.event.DocumentEvent;
 /**
  *
  * @author Proyectos
@@ -22,6 +27,7 @@ public class EscuelaControlador {
     
     //Aquí se localizan los métodos de escucha
     vista.addSearchListener(new SearchListener());
+    vista.addFilterName(new FilterListener());
     }
     
     class SearchListener implements ActionListener {
@@ -41,5 +47,36 @@ public class EscuelaControlador {
             
         }
     }
-    
+     class FilterListener implements DocumentListener {
+         public void changedUpdate(DocumentEvent e) {
+                        newFilter();
+                    }
+                    public void insertUpdate(DocumentEvent e) {
+                        newFilter();
+                    }
+                    public void removeUpdate(DocumentEvent e) {
+                        newFilter();
+                    }
+     private void newFilter() {
+       m_vista.jTable1.setRowSorter(m_modelo.sorter);
+         RowFilter<TableModel, Object> rf = null;
+        //If current expression doesn't parse, don't update.
+        try {
+            rf = RowFilter.regexFilter(m_vista.getNombre(),0,1,2);
+        } catch (java.util.regex.PatternSyntaxException e) {
+            return;
+        }
+        m_modelo.sorter.setRowFilter(rf);
+    }
+         // public void actionPerformed(ActionEvent e) {
+       //     TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(m_modelo.modelo);
+       //     m_vista.jTable1.setRowSorter(sorter); 
+       //     String nombre = m_vista.getNombre();
+      //  if (nombre.length() == 0) {
+       //   sorter.setRowFilter(null);
+      //  } else {
+      //    sorter.setRowFilter(RowFilter.regexFilter(nombre));
+     //   }
+     //    }
+        }
 }
