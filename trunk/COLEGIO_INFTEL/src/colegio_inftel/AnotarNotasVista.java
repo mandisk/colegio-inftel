@@ -1,9 +1,4 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
  * AnotarNotasVista.java
  *
  * Created on 04-ene-2012, 20:44:42
@@ -12,6 +7,7 @@
 package colegio_inftel;
 
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeListener;
 
 /**
  *
@@ -19,8 +15,11 @@ import java.awt.event.ActionListener;
  */
 public class AnotarNotasVista extends javax.swing.JFrame {
 
+    private AnotarNotasModelo m_modelo;
+
     /** Creates new form AnotarNotasVista */
-    public AnotarNotasVista() {
+    AnotarNotasVista(AnotarNotasModelo modelo) {
+        m_modelo = modelo;
         initComponents();
     }
 
@@ -45,39 +44,48 @@ public class AnotarNotasVista extends javax.swing.JFrame {
         pnlBody = new javax.swing.JPanel();
         marcoNotas = new javax.swing.JLayeredPane();
         lbPrimera = new javax.swing.JLabel();
-        txtPrimera = new javax.swing.JTextField();
+        nota1 = new javax.swing.JTextField();
         lbSegunda = new javax.swing.JLabel();
-        txtSegunda = new javax.swing.JTextField();
+        nota2 = new javax.swing.JTextField();
         lbTercera = new javax.swing.JLabel();
-        txtTercera = new javax.swing.JTextField();
+        ntoa3 = new javax.swing.JTextField();
+        notaFinal = new javax.swing.JTextField();
         lbNotaFinal = new javax.swing.JLabel();
-        txNotaFinal = new javax.swing.JTextField();
         btnGuardar = new javax.swing.JButton();
         btnCerrar = new javax.swing.JButton();
+        notas = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Calificaciones");
 
-        pnlHeader.setBackground(java.awt.SystemColor.control);
+        pnlHeader.setBackground(new java.awt.Color(255, 255, 255));
 
+        lbAlumno.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lbAlumno.setForeground(new java.awt.Color(102, 102, 102));
         lbAlumno.setText("Alumno:");
 
+        lbAsignatura.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lbAsignatura.setForeground(new java.awt.Color(102, 102, 102));
         lbAsignatura.setText("Asignatura:");
 
-        lbAsignaturaValue.setForeground(java.awt.SystemColor.textInactiveText);
+        lbAsignaturaValue.setForeground(new java.awt.Color(102, 102, 102));
         lbAsignaturaValue.setText("Informática");
 
+        lbCurso.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lbCurso.setForeground(new java.awt.Color(102, 102, 102));
         lbCurso.setText("Curso:");
 
+        lbGrupo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lbGrupo.setForeground(new java.awt.Color(102, 102, 102));
         lbGrupo.setText("Grupo:");
 
-        lbCursoValue.setForeground(java.awt.SystemColor.textInactiveText);
+        lbCursoValue.setForeground(new java.awt.Color(102, 102, 102));
         lbCursoValue.setText("1º de E.S.O");
 
-        lbGrupoValue.setForeground(java.awt.SystemColor.textInactiveText);
+        lbGrupoValue.setForeground(new java.awt.Color(102, 102, 102));
         lbGrupoValue.setText("B");
 
-        lbAlumnoValue.setForeground(java.awt.SystemColor.controlHighlight);
+        lbAlumnoValue.setForeground(new java.awt.Color(33, 94, 186));
         lbAlumnoValue.setText("Alfonso Pérez Sánchez");
 
         javax.swing.GroupLayout pnlHeaderLayout = new javax.swing.GroupLayout(pnlHeader);
@@ -93,7 +101,7 @@ public class AnotarNotasVista extends javax.swing.JFrame {
                 .addGroup(pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbAlumnoValue)
                     .addComponent(lbAsignaturaValue))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
                 .addGroup(pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lbCurso)
                     .addComponent(lbGrupo))
@@ -128,67 +136,66 @@ public class AnotarNotasVista extends javax.swing.JFrame {
         marcoNotas.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         lbPrimera.setText("Primera Evaluación:");
-        lbPrimera.setBounds(60, 20, -1, -1);
+        lbPrimera.setBounds(60, 20, 200, 14);
         marcoNotas.add(lbPrimera, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        txtPrimera.setForeground(java.awt.SystemColor.controlHighlight);
-        txtPrimera.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtPrimera.setText("1");
-        txtPrimera.setBounds(300, 10, 42, -1);
-        marcoNotas.add(txtPrimera, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        nota1.setForeground(java.awt.SystemColor.controlHighlight);
+        nota1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        nota1.setText("1");
+        nota1.setBounds(300, 10, 40, 20);
+        marcoNotas.add(nota1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         lbSegunda.setText("Segunda Evaluación:");
-        lbSegunda.setBounds(60, 50, -1, -1);
+        lbSegunda.setBounds(60, 50, 210, 14);
         marcoNotas.add(lbSegunda, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        txtSegunda.setForeground(java.awt.SystemColor.controlHighlight);
-        txtSegunda.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtSegunda.setText("7,5");
-        txtSegunda.setPreferredSize(new java.awt.Dimension(22, 28));
-        txtSegunda.setBounds(300, 40, 42, -1);
-        marcoNotas.add(txtSegunda, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        nota2.setForeground(java.awt.SystemColor.controlHighlight);
+        nota2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        nota2.setText("7,5");
+        nota2.setPreferredSize(new java.awt.Dimension(22, 28));
+        nota2.setBounds(300, 40, 40, 20);
+        marcoNotas.add(nota2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         lbTercera.setText("Tercera Evaluación:");
-        lbTercera.setBounds(60, 80, -1, -1);
+        lbTercera.setBounds(60, 80, 210, 14);
         marcoNotas.add(lbTercera, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        txtTercera.setForeground(java.awt.SystemColor.controlHighlight);
-        txtTercera.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtTercera.setText("10");
-        txtTercera.setPreferredSize(new java.awt.Dimension(22, 28));
-        txtTercera.setBounds(300, 70, 42, -1);
-        marcoNotas.add(txtTercera, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        ntoa3.setForeground(java.awt.SystemColor.controlHighlight);
+        ntoa3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        ntoa3.setText("10");
+        ntoa3.setPreferredSize(new java.awt.Dimension(22, 28));
+        ntoa3.setBounds(300, 70, 40, 20);
+        marcoNotas.add(ntoa3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        notaFinal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        notaFinal.setText("9");
 
         lbNotaFinal.setText("Calificación Final:");
-
-        txNotaFinal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txNotaFinal.setText("9");
-        txNotaFinal.setEnabled(false);
 
         javax.swing.GroupLayout pnlBodyLayout = new javax.swing.GroupLayout(pnlBody);
         pnlBody.setLayout(pnlBodyLayout);
         pnlBodyLayout.setHorizontalGroup(
             pnlBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlBodyLayout.createSequentialGroup()
-                .addGap(97, 97, 97)
+                .addGap(103, 103, 103)
                 .addComponent(lbNotaFinal)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
-                .addComponent(txNotaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(106, 106, 106))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 144, Short.MAX_VALUE)
+                .addComponent(notaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(108, 108, 108))
             .addGroup(pnlBodyLayout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addComponent(marcoNotas, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         pnlBodyLayout.setVerticalGroup(
             pnlBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBodyLayout.createSequentialGroup()
-                .addContainerGap(36, Short.MAX_VALUE)
+                .addContainerGap(39, Short.MAX_VALUE)
                 .addComponent(marcoNotas, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(pnlBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbNotaFinal)
-                    .addComponent(txNotaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(notaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         btnGuardar.setText("Guardar");
@@ -200,18 +207,26 @@ public class AnotarNotasVista extends javax.swing.JFrame {
         btnCerrar.setMinimumSize(new java.awt.Dimension(90, 29));
         btnCerrar.setPreferredSize(new java.awt.Dimension(90, 29));
 
+        notas.setText("jFormattedTextField1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(165, 165, 165)
-                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(135, Short.MAX_VALUE))
-            .addComponent(pnlBody, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(pnlHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(295, Short.MAX_VALUE)
+                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(pnlBody, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(94, 94, 94)
+                .addComponent(notas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(288, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,26 +234,18 @@ public class AnotarNotasVista extends javax.swing.JFrame {
                 .addComponent(pnlHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlBody, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(notas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-    * @param args the command line arguments
-    */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AnotarNotasVista().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCerrar;
@@ -256,12 +263,13 @@ public class AnotarNotasVista extends javax.swing.JFrame {
     private javax.swing.JLabel lbSegunda;
     private javax.swing.JLabel lbTercera;
     private javax.swing.JLayeredPane marcoNotas;
+    private javax.swing.JTextField nota1;
+    private javax.swing.JTextField nota2;
+    private javax.swing.JTextField notaFinal;
+    private javax.swing.JFormattedTextField notas;
+    private javax.swing.JTextField ntoa3;
     private javax.swing.JPanel pnlBody;
     private javax.swing.JPanel pnlHeader;
-    private javax.swing.JTextField txNotaFinal;
-    private javax.swing.JTextField txtPrimera;
-    private javax.swing.JTextField txtSegunda;
-    private javax.swing.JTextField txtTercera;
     // End of variables declaration//GEN-END:variables
 
 
@@ -273,5 +281,9 @@ public class AnotarNotasVista extends javax.swing.JFrame {
         btnCerrar.addActionListener(a);
     }
 
+    public void addCambioValorNotaListener(PropertyChangeListener a){
+
+        notas.addPropertyChangeListener("value", a);
+    }
 
 }
