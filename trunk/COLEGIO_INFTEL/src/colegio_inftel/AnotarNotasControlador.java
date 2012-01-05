@@ -4,11 +4,10 @@ package colegio_inftel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import javax.print.attribute.AttributeSet;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.PlainDocument;
 
 /**
  * Controlador para la vista/modelo Anotar Notas
@@ -28,14 +27,44 @@ public class AnotarNotasControlador {
 
         m_vista.addGuardarListener(new GuardarListener());
         m_vista.addCerrarListener(new CerrarListener());
+        m_vista.addValidarNotasKeyTyped(new ValidarNotasListener());
 
     }
+
+
+    private boolean notaValida(String text) {
+
+        boolean ok=false;
+        int posPuntoDecimal=text.indexOf(".");
+        String decimales = "";
+
+
+        if (posPuntoDecimal>0){
+            decimales=text.substring(posPuntoDecimal+1);
+        }
+
+        try{
+            if(text.length()<=5 && decimales.length()<3){
+                Float nota = Float.parseFloat(text);
+                if ((nota<=10 && nota >=0)){
+                    ok=true;
+                }
+            }
+        }catch (NumberFormatException e){
+            ok=false;
+        }
+
+        return ok;
+    }
+
+
+
+
 
 
     class GuardarListener implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
-            //codigo
             System.out.println("Boton Guardar pulsado");
         }
 
@@ -44,39 +73,30 @@ public class AnotarNotasControlador {
     class CerrarListener implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
-            //codigo
             System.out.println("Boton Cerrar pulsado");
         }
 
     }
 
 
-    class CambioNotaListener implements PropertyChangeListener {
+    class ValidarNotasListener implements KeyListener {
 
-        public void propertyChange(PropertyChangeEvent evt) {
-            System.out.println("el valor ha cambiado");
+        public void keyTyped(KeyEvent evt) {
+
+            if (!notaValida(m_vista.getNota1()+evt.getKeyChar())){
+                evt.consume(); //ignorar la tecla pulsada
+            }
         }
+
+        public void keyPressed(KeyEvent arg0) {
+           // throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        public void keyReleased(KeyEvent arg0) {
+           // throw new UnsupportedOperationException("Not supported yet.");
+        }
+
     }
-
-
-    class LimitadorCaracteres extends PlainDocument
-    {
-       /**
-        * Método al que llama el editor cada vez que se intenta insertar caracteres.
-        * Sólo debemos verificar arg1, que es la cadena que se quiere insertar en el JTextField
-        */
-       public void insertString(int arg0, String arg1, AttributeSet arg2) throws BadLocationException
-       {
-           for (int i=0;i<arg1.length();i++)
-              // si no es digit, volvemos
-              if (!Character.isDigit(arg1.charAt(i)))
-                 return;
-
-           // Si todos son digit, insertamos el texto en el JTextField
-           super.insertString(arg0, arg1,(javax.swing.text.AttributeSet) arg2);
-       }
-    }
-
 
 
 }
