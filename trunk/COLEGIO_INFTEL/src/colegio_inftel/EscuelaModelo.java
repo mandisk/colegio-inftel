@@ -14,6 +14,10 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.event.*;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+
+
 
 /**
  *
@@ -26,6 +30,10 @@ public class EscuelaModelo {
     //Para meter los datos en el JTable, usaremos la clase DefaultTableModel. Para ello basta con instanciar el JTable como se muestra en el codigo
 public DefaultTableModel modelo = new DefaultTableModel();
 public JTable tabla = new JTable(modelo);
+ TableRowSorter sorter = new TableRowSorter(modelo);
+//public  TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(modelo);
+
+
     
     /** Constructor */
     public EscuelaModelo(){
