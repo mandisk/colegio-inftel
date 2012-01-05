@@ -4,6 +4,8 @@ package colegio_inftel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 /**
  * Controlador para la vista/modelo Anotar Notas
@@ -23,7 +25,7 @@ public class AnotarNotasControlador {
 
         m_vista.addGuardarListener(new GuardarListener());
         m_vista.addCerrarListener(new CerrarListener());
-        
+        m_vista.addCambioValorNotaListener(new CambioNotaListener());
     }
 
 
@@ -31,20 +33,27 @@ public class AnotarNotasControlador {
 
         public void actionPerformed(ActionEvent e) {
             //codigo
+            System.out.println("Boton Guardar pulsado");
         }
 
     }
-
 
     class CerrarListener implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
             //codigo
+            System.out.println("Boton Cerrar pulsado");
         }
 
     }
 
 
+    class CambioNotaListener implements PropertyChangeListener {
+
+        public void propertyChange(PropertyChangeEvent evt) {
+            System.out.println("el valor ha cambiado");
+        }
+    }
 
 
 
