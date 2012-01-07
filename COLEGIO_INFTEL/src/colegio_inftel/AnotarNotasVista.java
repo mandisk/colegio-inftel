@@ -7,7 +7,9 @@
 package colegio_inftel;
 
 import java.awt.event.ActionListener;
+import java.awt.event.FocusListener;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 
 /**
  *
@@ -51,6 +53,7 @@ public class AnotarNotasVista extends javax.swing.JFrame {
         nota3 = new javax.swing.JTextField();
         lbPrimera = new javax.swing.JLabel();
         lbNotaFinal = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         btnGuardar = new javax.swing.JButton();
         btnCerrar = new javax.swing.JButton();
 
@@ -133,8 +136,10 @@ public class AnotarNotasVista extends javax.swing.JFrame {
                 .addGap(20, 20, 20))
         );
 
+        notaFinal.setEditable(false);
+        notaFinal.setForeground(new java.awt.Color(57, 57, 57));
         notaFinal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        notaFinal.setText("9");
+        notaFinal.setText("0");
 
         marcoNotas.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -144,11 +149,13 @@ public class AnotarNotasVista extends javax.swing.JFrame {
 
         nota1.setForeground(new java.awt.Color(54, 98, 209));
         nota1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        nota1.setText("0");
         nota1.setBounds(280, 20, 60, 20);
         marcoNotas.add(nota1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         nota2.setForeground(new java.awt.Color(54, 98, 209));
         nota2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        nota2.setText("0");
         nota2.setPreferredSize(new java.awt.Dimension(22, 28));
         nota2.setBounds(280, 50, 60, 20);
         marcoNotas.add(nota2, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -159,6 +166,7 @@ public class AnotarNotasVista extends javax.swing.JFrame {
 
         nota3.setForeground(new java.awt.Color(54, 98, 209));
         nota3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        nota3.setText("0");
         nota3.setBounds(280, 80, 60, 20);
         marcoNotas.add(nota3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -167,6 +175,8 @@ public class AnotarNotasVista extends javax.swing.JFrame {
         marcoNotas.add(lbPrimera, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         lbNotaFinal.setText("Calificación Final:");
+
+        jLabel1.setText("SOB");
 
         javax.swing.GroupLayout pnlBodyLayout = new javax.swing.GroupLayout(pnlBody);
         pnlBody.setLayout(pnlBodyLayout);
@@ -182,7 +192,9 @@ public class AnotarNotasVista extends javax.swing.JFrame {
                         .addComponent(lbNotaFinal)
                         .addGap(104, 104, 104)
                         .addComponent(notaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(90, 90, 90))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel1)
+                        .addGap(54, 54, 54))))
         );
         pnlBodyLayout.setVerticalGroup(
             pnlBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,8 +203,9 @@ public class AnotarNotasVista extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(pnlBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(notaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbNotaFinal))
-                .addContainerGap(26, Short.MAX_VALUE))
+                    .addComponent(lbNotaFinal)
+                    .addComponent(jLabel1))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         btnGuardar.setText("Guardar");
@@ -234,9 +247,11 @@ public class AnotarNotasVista extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lbAlumno;
     private javax.swing.JLabel lbAlumnoValue;
     private javax.swing.JLabel lbAsignatura;
@@ -273,10 +288,65 @@ public class AnotarNotasVista extends javax.swing.JFrame {
         nota3.addKeyListener(evt);
     }
 
+    public void addFormatearNota(FocusListener evt  ){
+        nota1.addFocusListener(evt);
+        nota2.addFocusListener(evt);
+        nota3.addFocusListener(evt);
+    }
+
+
+
+    public ArrayList<Double> getNotas(){
+        ArrayList<Double> notas = new ArrayList<Double>();
+
+        notas.add(getN1());
+        notas.add(getN2());
+        notas.add(getN3());
+
+         
+        return notas;
+    }
+
+
+    public Double getN1(){
+        Double n;
+        try{
+            n=Double.parseDouble(nota1.getText());
+        } catch (NumberFormatException e) {
+            n=new Double(0.0);
+        }
+
+        return n;
+    }
+
+    public Double getN2(){
+        Double n;
+        try{
+            n=Double.parseDouble(nota2.getText());
+        } catch (NumberFormatException e) {
+            n=new Double(0.0);
+        }
+
+        return n;
+    }
+
+    public Double getN3(){
+        Double n;
+        try{
+            n=Double.parseDouble(nota3.getText());
+        } catch (NumberFormatException e) {
+            n=new Double(0.0);
+        }
+
+        return n;
+    }
+
+
 
     public String getNota1(){
         return nota1.getText();
     }
+
 
     public String getNota2(){
         return nota2.getText();
@@ -285,4 +355,26 @@ public class AnotarNotasVista extends javax.swing.JFrame {
     public String getNota3(){
         return nota3.getText();
     }
+
+    public String getNotaFinal(){
+        return notaFinal.getText();
+    }
+
+    public void setNotaFinal(String nota){
+        notaFinal.setText(nota);
+    }
+
+    public void setNota1(String nota){
+        nota1.setText(nota);
+    }
+
+    public void setNota2(String nota){
+        nota2.setText(nota);
+    }
+    
+    public void setNota3(String nota){
+        nota3.setText(nota);
+    }
+
+
 }
