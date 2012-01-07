@@ -51,14 +51,12 @@ public class EscuelaVistaIncidencias extends javax.swing.JFrame {
         nombreAlumnoLabel = new javax.swing.JLabel();
         asignaturaValorLabel = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
-        expedienteLabel1 = new javax.swing.JLabel();
         cursoLabel1 = new javax.swing.JLabel();
         nombreProfesorLabel1 = new javax.swing.JLabel();
         cursoValorLabel1 = new javax.swing.JLabel();
         alumnoLabel1 = new javax.swing.JLabel();
         asignaturaLabel1 = new javax.swing.JLabel();
         grupoLabel1 = new javax.swing.JLabel();
-        expedienteValorLabel1 = new javax.swing.JLabel();
         grupoValorLabel1 = new javax.swing.JLabel();
         nombreAlumnoLabel1 = new javax.swing.JLabel();
         asignaturaValorLabel1 = new javax.swing.JLabel();
@@ -203,21 +201,17 @@ public class EscuelaVistaIncidencias extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Escuela2.0 -- Incidencias");
 
-        jPanel6.setBackground(new java.awt.Color(255, 255, 153));
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        expedienteLabel1.setFont(new java.awt.Font("Tahoma", 1, 11));
-        expedienteLabel1.setText("Expediente:");
-        expedienteLabel1.setName("expedienteLabel"); // NOI18N
-
-        cursoLabel1.setFont(new java.awt.Font("Tahoma", 1, 11));
+        cursoLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         cursoLabel1.setText("Curso:");
         cursoLabel1.setName("cursoLabel"); // NOI18N
 
         nombreProfesorLabel1.setFont(new java.awt.Font("Tahoma", 2, 11));
         nombreProfesorLabel1.setName("nombreProfesorLabel"); // NOI18N
 
-        cursoValorLabel1.setFont(new java.awt.Font("Tahoma", 2, 11));
+        cursoValorLabel1.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         cursoValorLabel1.setText("4º de ESO");
         cursoValorLabel1.setName("cursoValorLabel"); // NOI18N
 
@@ -229,15 +223,11 @@ public class EscuelaVistaIncidencias extends javax.swing.JFrame {
         asignaturaLabel1.setText("Asignatura:");
         asignaturaLabel1.setName("asignaturaLabel"); // NOI18N
 
-        grupoLabel1.setFont(new java.awt.Font("Tahoma", 1, 11));
+        grupoLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         grupoLabel1.setText("Grupo:");
         grupoLabel1.setName("grupoLabel"); // NOI18N
 
-        expedienteValorLabel1.setFont(new java.awt.Font("Tahoma", 2, 11));
-        expedienteValorLabel1.setText("0001/2011");
-        expedienteValorLabel1.setName("expedienteValorLabel"); // NOI18N
-
-        grupoValorLabel1.setFont(new java.awt.Font("Tahoma", 2, 11));
+        grupoValorLabel1.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         grupoValorLabel1.setText("A");
         grupoValorLabel1.setName("grupoValorLabel"); // NOI18N
 
@@ -255,32 +245,28 @@ public class EscuelaVistaIncidencias extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(alumnoLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(nombreAlumnoLabel1))
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(asignaturaLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(asignaturaValorLabel1)))
-                        .addGap(117, 117, 117)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(expedienteLabel1)
-                            .addComponent(cursoLabel1)))
-                    .addComponent(grupoLabel1))
+                        .addComponent(alumnoLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(nombreAlumnoLabel1)
+                        .addGap(148, 148, 148)
+                        .addComponent(cursoLabel1))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(asignaturaLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(asignaturaValorLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(grupoLabel1)))
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(158, 158, 158)
                         .addComponent(nombreProfesorLabel1))
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
+                        .addGap(39, 39, 39)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(cursoValorLabel1)
-                            .addComponent(expedienteValorLabel1)
-                            .addComponent(grupoValorLabel1))))
+                            .addComponent(grupoValorLabel1)
+                            .addComponent(cursoValorLabel1))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
@@ -291,19 +277,15 @@ public class EscuelaVistaIncidencias extends javax.swing.JFrame {
                     .addComponent(nombreProfesorLabel1)
                     .addComponent(alumnoLabel1)
                     .addComponent(nombreAlumnoLabel1)
-                    .addComponent(expedienteLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(expedienteValorLabel1))
+                    .addComponent(cursoLabel1)
+                    .addComponent(cursoValorLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(asignaturaLabel1)
                     .addComponent(asignaturaValorLabel1)
-                    .addComponent(cursoLabel1)
-                    .addComponent(cursoValorLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(grupoLabel1)
                     .addComponent(grupoValorLabel1))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         faltasLabel.setText("Faltas");
@@ -381,12 +363,12 @@ public class EscuelaVistaIncidencias extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        confirmarButton.setFont(new java.awt.Font("Tahoma", 3, 11)); // NOI18N
+        confirmarButton.setFont(new java.awt.Font("Tahoma", 3, 11));
         confirmarButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/colegio_inftel/Imagenes/boton_confirmar.JPG"))); // NOI18N
         confirmarButton.setContentAreaFilled(false);
         confirmarButton.setName("confirmarButton"); // NOI18N
 
-        cancelarButton.setFont(new java.awt.Font("Tahoma", 3, 11)); // NOI18N
+        cancelarButton.setFont(new java.awt.Font("Tahoma", 3, 11));
         cancelarButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/colegio_inftel/Imagenes/boton_cancelar.JPG"))); // NOI18N
         cancelarButton.setContentAreaFilled(false);
         cancelarButton.setName("cancelarButton"); // NOI18N
@@ -417,22 +399,22 @@ public class EscuelaVistaIncidencias extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel6, 0, 456, Short.MAX_VALUE)
-                            .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -461,9 +443,7 @@ public class EscuelaVistaIncidencias extends javax.swing.JFrame {
     private javax.swing.JLabel cursoValorLabel;
     private javax.swing.JLabel cursoValorLabel1;
     private javax.swing.JLabel expedienteLabel;
-    private javax.swing.JLabel expedienteLabel1;
     private javax.swing.JLabel expedienteValorLabel;
-    private javax.swing.JLabel expedienteValorLabel1;
     private javax.swing.JLabel faltasLabel;
     private javax.swing.JTextField faltasText;
     private javax.swing.JLabel grupoLabel;
@@ -491,9 +471,6 @@ public class EscuelaVistaIncidencias extends javax.swing.JFrame {
     }
     public void setAsignatura(String asignatura){
         asignaturaValorLabel.setText(asignatura);
-    }
-    public void setExpediente(String expediente){
-        expedienteValorLabel.setText(expediente);
     }
     public void setCurso(String curso){
         cursoValorLabel.setText(curso);

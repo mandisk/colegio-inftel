@@ -23,7 +23,10 @@ public class EscuelaControladorIncidencias {
 
         this.modelo = modelo;
         this.vista = vista;
-
+        vista.setAsignatura(modelo.getAsignatura());
+        vista.setCurso(modelo.getCurso());
+        vista.setGrupo(modelo.getGrupo());
+        vista.setNombreAlumno(modelo.getNombreAlumno());
         vista.addConfirmarListener(new ConfirmarListener());
         vista.addCancelarListener(new ActionListener(){
 

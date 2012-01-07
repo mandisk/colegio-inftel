@@ -16,6 +16,9 @@ import java.sql.*;
 public class EscuelaModeloIncidencias {//inacabada, estoy acabandola...
 
     private Connection conexion = null;
+
+    //almacena los datos de la fila seleccionada por el usuario del
+    //JTable de la clase EscuelaVistaPrincipal
     protected Object[] datosAlumno;
 
     /** Se establece la conexion con la base de datos */
@@ -55,8 +58,8 @@ public class EscuelaModeloIncidencias {//inacabada, estoy acabandola...
     public int getIdAlumno(){
         int idAlumno=-1;
         String nombre = datosAlumno[0].toString();
-        String apellido1 = datosAlumno[0].toString();
-        String apellido2 = datosAlumno[0].toString();
+        String apellido1 = datosAlumno[1].toString();
+        String apellido2 = datosAlumno[2].toString();
         ResultSet rs=null;
         String sql="SELECT id FROM ALUMNOS WHERE nombre="+nombre+" AND apellido1="+
                 apellido1+" AND apellido2="+apellido2;
@@ -68,6 +71,10 @@ public class EscuelaModeloIncidencias {//inacabada, estoy acabandola...
             Statement s = conexion.createStatement();
             //actualización de los datos de incidencias
             rs= s.executeQuery(sql);
+            if(rs.isFirst()){
+
+                idAlumno= rs.getInt("id");
+            }
         } catch (Exception e)
         {
             e.printStackTrace();
@@ -75,65 +82,117 @@ public class EscuelaModeloIncidencias {//inacabada, estoy acabandola...
         finally{
             cierraConexion();
         }
+        if(idAlumno==-1){
+            System.out.println("El alumno: "+nombre+" "+apellido1+" "+apellido2+" no existe en la Base de Datos");
+            //hacer una llamada a una clase q dibuje ventanas de error
+        }
 
         return idAlumno;
     }
+     public int getIdGrupo(){
+        int idGrupo=-1;
+        ResultSet rs=null;
+        String sql="SELECT id FROM GRUPOS WHERE desc ="+getGrupo();
+
+         estableceConexion();
+          try
+        {
+            // Se crea un Statement, para realizar la consulta
+            Statement s = conexion.createStatement();
+            //actualización de los datos de incidencias
+            rs= s.executeQuery(sql);
+            if(rs.isFirst()){
+
+                idGrupo= rs.getInt("id");
+            }
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        finally{
+            cierraConexion();
+        }
+        if(idGrupo==-1){
+            System.out.println("El grupo"+getGrupo()+"no existe en la Base de Datos");
+            //hacer una llamada a una clase q dibuje ventanas de error
+        }
+
+         return idGrupo;
+     }
+     public int getIdCurso(){
+         int idCurso=-1;
+         ResultSet rs=null;
+        String sql="SELECT id FROM CURSOS WHERE desc ="+getCurso();
+
+         estableceConexion();
+          try
+        {
+            // Se crea un Statement, para realizar la consulta
+            Statement s = conexion.createStatement();
+            //actualización de los datos de incidencias
+            rs= s.executeQuery(sql);
+            if(rs.isFirst()){
+
+               idCurso = rs.getInt("id");
+            }
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        finally{
+            cierraConexion();
+        }
+        if(idCurso==-1){
+            System.out.println("El curso "+getCurso()+"no existe en la Base de Datos");
+            //hacer una llamada a una clase q dibuje ventanas de error
+        }
+
+         return idCurso;
+     }
 
 
     public String getNombreAlumno(){
-
-        String nombreAlumno="";
+       //Obtener nombre del alumno de la BD/JTable Listado alumnos
        
-        //Obtener nombre del alumno de la BD/JTable Listado alumnos
-
-        return nombreAlumno;
+        return datosAlumno[0].toString()+datosAlumno[1].toString()+datosAlumno[2].toString();
     }
     public String getAsignatura(){
-        String asignatura="";
-        //Obtener asignatura de la BD
-        return asignatura;
+        //Obtener asignatura de la clase vista principal
+        return datosAlumno[3].toString() ;
     }
-    public String getExpediente(){
-        String expediente="";
-        //Obtener expediente de la BD
-        return expediente;
-    }
+    
     public String getCurso(){
-        String curso="";
-        //Obtener curso de la BD
-        return curso;
+        
+        //Obtener curso de la clase vista principal
+        return datosAlumno[4].toString();
     }
+
     public String getGrupo(){
-        String grupo="";
-        //Obtener grupo de la BD
-        return grupo;
+        
+        //Obtener grupo de la clase vista principal
+        return datosAlumno[5].toString();
     }
-    public void setFaltas(int faltas){
-        // Introducir faltas en BD
-    }
-    public void setRetrasos(int retrasos){
-        // Introducir retrasos en BD
-    }
-    public void setSanciones(int sanciones){
-        // Introducir sanciones en BD
-    }
-    public void setComentarios(String comentarios){
-        // Introducir comentarios en BD
-    }
+   
     public void modificarIncidenciasAlumno(int faltas, int retrasos, int sanciones, String comentarios){
 
         String sql="UPDATE MATRICULACIONES SET faltas_acumualdas="+faltas+", retardos="+retrasos+
-                ", saciones="+sanciones+", observaciones="+comentarios+"WHERE id_grupo_fk="+getGrupo()+
-                "AND id_curso_fk ="+getCurso()+"AND id_alumno_fk= "+getIdAlumno();
+                ", saciones="+sanciones+", observaciones="+comentarios+"WHERE id_grupo_fk="+getIdGrupo()+
+                "AND id_curso_fk ="+getIdCurso()+"AND id_alumno_fk= "+getIdAlumno();
         try
         {
             // Se crea un Statement, para realizar la consulta
             Statement s = conexion.createStatement();
             //actualización de los datos de incidencias
             int numDatos= s.executeUpdate(sql);
+            if (numDatos==0){
+                System.out.println("Fallo al actualizar incidencias en la Base de Datos");
+                //hacer una llamada a una clase q dibuje ventanas de error
+            }
         } catch (Exception e)
         {
             e.printStackTrace();
         }
     }
+
+
 }
