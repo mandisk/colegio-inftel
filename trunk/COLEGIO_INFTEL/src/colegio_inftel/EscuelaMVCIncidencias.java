@@ -18,7 +18,8 @@ public class EscuelaMVCIncidencias {
     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
-            EscuelaModeloIncidencias modelo = new EscuelaModeloIncidencias();
+            Object[] datos;
+            EscuelaModeloIncidencias modelo = new EscuelaModeloIncidencias(datos);
             EscuelaVistaIncidencias vista= new EscuelaVistaIncidencias(modelo);
             public void run() {
                 vista.setVisible(true);

@@ -381,13 +381,13 @@ public class EscuelaVistaIncidencias extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        confirmarButton.setFont(new java.awt.Font("Tahoma", 3, 11));
-        confirmarButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/inftel_java/Imagenes/boton_confirmar.JPG"))); // NOI18N
+        confirmarButton.setFont(new java.awt.Font("Tahoma", 3, 11)); // NOI18N
+        confirmarButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/colegio_inftel/Imagenes/boton_confirmar.JPG"))); // NOI18N
         confirmarButton.setContentAreaFilled(false);
         confirmarButton.setName("confirmarButton"); // NOI18N
 
-        cancelarButton.setFont(new java.awt.Font("Tahoma", 3, 11));
-        cancelarButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/inftel_java/Imagenes/boton_cancelar.JPG"))); // NOI18N
+        cancelarButton.setFont(new java.awt.Font("Tahoma", 3, 11)); // NOI18N
+        cancelarButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/colegio_inftel/Imagenes/boton_cancelar.JPG"))); // NOI18N
         cancelarButton.setContentAreaFilled(false);
         cancelarButton.setName("cancelarButton"); // NOI18N
 
