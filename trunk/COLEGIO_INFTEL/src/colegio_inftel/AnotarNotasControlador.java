@@ -38,7 +38,6 @@ public class AnotarNotasControlador {
         int posPuntoDecimal=text.indexOf(".");
         String decimales = "";
 
-
         if (posPuntoDecimal>0){
             decimales=text.substring(posPuntoDecimal+1);
         }
@@ -82,10 +81,22 @@ public class AnotarNotasControlador {
     class ValidarNotasListener implements KeyListener {
 
         public void keyTyped(KeyEvent evt) {
+            Object origen = evt.getSource();
 
-            if (!notaValida(m_vista.getNota1()+evt.getKeyChar())){
-                evt.consume(); //ignorar la tecla pulsada
+            if(origen==m_vista.nota1){
+                if (!notaValida(m_vista.getNota1()+evt.getKeyChar())){
+                    evt.consume(); //ignorar la tecla pulsada
+                }
+            } else if (origen==m_vista.nota2) {
+                if (!notaValida(m_vista.getNota2()+evt.getKeyChar())){
+                    evt.consume(); //ignorar la tecla pulsada
+                }
+            } else if (origen==m_vista.nota3 ){
+                if (!notaValida(m_vista.getNota3()+evt.getKeyChar())){
+                    evt.consume(); //ignorar la tecla pulsada
+                }
             }
+
         }
 
         public void keyPressed(KeyEvent arg0) {

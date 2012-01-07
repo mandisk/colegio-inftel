@@ -42,14 +42,14 @@ public class AnotarNotasVista extends javax.swing.JFrame {
         lbGrupoValue = new javax.swing.JLabel();
         lbAlumnoValue = new javax.swing.JLabel();
         pnlBody = new javax.swing.JPanel();
+        notaFinal = new javax.swing.JTextField();
         marcoNotas = new javax.swing.JLayeredPane();
-        lbPrimera = new javax.swing.JLabel();
         lbSegunda = new javax.swing.JLabel();
         nota1 = new javax.swing.JTextField();
         nota2 = new javax.swing.JTextField();
         lbTercera = new javax.swing.JLabel();
         nota3 = new javax.swing.JTextField();
-        notaFinal = new javax.swing.JTextField();
+        lbPrimera = new javax.swing.JLabel();
         lbNotaFinal = new javax.swing.JLabel();
         btnGuardar = new javax.swing.JButton();
         btnCerrar = new javax.swing.JButton();
@@ -133,11 +133,10 @@ public class AnotarNotasVista extends javax.swing.JFrame {
                 .addGap(20, 20, 20))
         );
 
-        marcoNotas.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        notaFinal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        notaFinal.setText("9");
 
-        lbPrimera.setText("Primera Evaluación:");
-        lbPrimera.setBounds(60, 20, 200, 16);
-        marcoNotas.add(lbPrimera, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        marcoNotas.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         lbSegunda.setText("Segunda Evaluación:");
         lbSegunda.setBounds(60, 50, 210, 16);
@@ -163,8 +162,9 @@ public class AnotarNotasVista extends javax.swing.JFrame {
         nota3.setBounds(280, 80, 60, 20);
         marcoNotas.add(nota3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        notaFinal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        notaFinal.setText("9");
+        lbPrimera.setText("Primera Evaluación:");
+        lbPrimera.setBounds(60, 20, 210, 16);
+        marcoNotas.add(lbPrimera, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         lbNotaFinal.setText("Calificación Final:");
 
@@ -250,9 +250,9 @@ public class AnotarNotasVista extends javax.swing.JFrame {
     private javax.swing.JLabel lbSegunda;
     private javax.swing.JLabel lbTercera;
     private javax.swing.JLayeredPane marcoNotas;
-    private javax.swing.JTextField nota1;
-    private javax.swing.JTextField nota2;
-    private javax.swing.JTextField nota3;
+    protected javax.swing.JTextField nota1;
+    protected javax.swing.JTextField nota2;
+    protected javax.swing.JTextField nota3;
     private javax.swing.JTextField notaFinal;
     private javax.swing.JPanel pnlBody;
     private javax.swing.JPanel pnlHeader;
