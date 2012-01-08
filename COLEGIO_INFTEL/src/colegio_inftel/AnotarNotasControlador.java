@@ -2,6 +2,7 @@
 
 package colegio_inftel;
 
+import es.uma.masterinftel.colegio_inftel.modelo.dao.CalificacionesDAO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -19,15 +20,17 @@ import java.util.ArrayList;
  */
 public class AnotarNotasControlador {
 
-    private AnotarNotasModelo            m_modelo;
-    private AnotarNotasVistaD            m_vista;
+    //private AnotarNotasModelo            m_modelo;
+    private CalificacionesDAO   m_modelo;
+    private AnotarNotasVistaD   m_vista;
 
 
     //public AnotarNotasControlador(AnotarNotasModelo modelo, AnotarNotasVista vista){
-    public AnotarNotasControlador(AnotarNotasModelo modelo, AnotarNotasVistaD vista){
+    //public AnotarNotasControlador(AnotarNotasModelo modelo, AnotarNotasVistaD vista){
+    public AnotarNotasControlador(CalificacionesDAO modelo, AnotarNotasVistaD vista){
 
         m_modelo = modelo;
-        m_vista = vista;
+        m_vista  = vista;
 
         m_vista.addGuardarListener(new GuardarListener());
         m_vista.addCerrarListener(new CerrarListener());
@@ -78,6 +81,10 @@ public class AnotarNotasControlador {
 
         public void actionPerformed(ActionEvent e) {
             System.out.println("Boton Guardar pulsado");
+
+
+
+
         }
 
     }
