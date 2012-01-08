@@ -1,7 +1,9 @@
 
 
-package colegio_inftel;
+package es.uma.masterinftel.colegio_inftel.control;
 
+import es.uma.masterinftel.colegio_inftel.vistas.AnotarNotasVista;
+import colegio_inftel.*;
 import com.mysql.jdbc.Connection;
 import es.uma.masterinftel.colegio_inftel.modelo.dao.CalificacionesDAO;
 import es.uma.masterinftel.colegio_inftel.modelo.dto.CalificacionesDTO;

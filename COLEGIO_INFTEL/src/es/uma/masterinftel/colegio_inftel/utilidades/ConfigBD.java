@@ -3,11 +3,12 @@
  *
  */
 
-package colegio_inftel;
+package es.uma.masterinftel.colegio_inftel.utilidades;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 /**
@@ -53,8 +54,8 @@ public class ConfigBD {
         }
 
         uri     =p.getProperty("uri");
-        usuario =p.getProperty("usuario");
-        clave   =p.getProperty("clave");
+        usuario =p.getProperty("user");
+        clave   =p.getProperty("password");
 
     }
 
