@@ -35,8 +35,8 @@ public class Conexion {
                 //conn = DriverManager.getConnection(bd.getUri(),bd.getUsuario(),bd.getClave());
                 //Lo siguiente se debe quitar después:
                 if (conn != null) {
-                    System.out.println("Conexión a base de datos " + bd.getUri() + " ... Ok");
-                    conn.close();
+                    //System.out.println("Conexión a base de datos " + bd.getUri() + " ... Ok");
+                    System.out.println("Conexión a base de datos " + url + " ... Ok");
                 }
             } catch (SQLException ex) {
                 System.out.println("Hubo un problema al intentar conectarse con la base de datos " + bd.getUri());
