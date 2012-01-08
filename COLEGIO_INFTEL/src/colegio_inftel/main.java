@@ -11,20 +11,23 @@
 
 package colegio_inftel;
 
+import es.uma.masterinftel.colegio_inftel.modelo.dao.CalificacionesDAO;
+
 /**
  *
  * @author agumpg
  */
 public class main extends javax.swing.JFrame {
 
-    public AnotarNotasModelo modelo;
-    public AnotarNotasVistaD vista;
-    public AnotarNotasControlador controlador;
+    public CalificacionesDAO        modelo;
+    public AnotarNotasVistaD        vista;
+    public AnotarNotasControlador   controlador;
 
     /** Creates new form main */
     public main() {
 
-        modelo = new AnotarNotasModelo();
+        //modelo = new AnotarNotasModelo();
+        modelo = new CalificacionesDAO();
         vista = new AnotarNotasVistaD(modelo, this, true);
         controlador = new AnotarNotasControlador(modelo,vista);
 
