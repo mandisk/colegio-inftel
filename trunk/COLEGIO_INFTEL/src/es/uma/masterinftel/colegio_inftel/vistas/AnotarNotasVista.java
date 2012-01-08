@@ -9,7 +9,7 @@
  * Created on 08-ene-2012, 13:25:09
  */
 
-package colegio_inftel;
+package es.uma.masterinftel.colegio_inftel.vistas;
 
 import es.uma.masterinftel.colegio_inftel.modelo.dao.CalificacionesDAO;
 import java.awt.event.ActionListener;
@@ -306,11 +306,11 @@ public class AnotarNotasVista extends javax.swing.JDialog {
     private javax.swing.JLabel lbPrimera;
     private javax.swing.JLabel lbSegunda;
     private javax.swing.JLabel lbTercera;
-    protected javax.swing.JTextField nota1;
-    protected javax.swing.JTextField nota2;
-    protected javax.swing.JTextField nota3;
-    protected javax.swing.JTextField notaFinal;
-    protected javax.swing.JTextField notaFinalValue;
+    public javax.swing.JTextField nota1;
+    public javax.swing.JTextField nota2;
+    public javax.swing.JTextField nota3;
+    public javax.swing.JTextField notaFinal;
+    public javax.swing.JTextField notaFinalValue;
     private javax.swing.JPanel pCabecera;
     private javax.swing.JPanel pCuerpo;
     // End of variables declaration//GEN-END:variables

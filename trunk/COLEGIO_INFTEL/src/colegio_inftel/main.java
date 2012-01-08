@@ -11,6 +11,8 @@
 
 package colegio_inftel;
 
+import es.uma.masterinftel.colegio_inftel.vistas.AnotarNotasVista;
+import es.uma.masterinftel.colegio_inftel.control.AnotarNotasControlador;
 import es.uma.masterinftel.colegio_inftel.modelo.dao.CalificacionesDAO;
 
 /**
