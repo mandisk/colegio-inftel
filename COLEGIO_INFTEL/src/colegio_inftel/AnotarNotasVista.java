@@ -23,6 +23,8 @@ public class AnotarNotasVista extends javax.swing.JFrame {
     AnotarNotasVista(AnotarNotasModelo modelo) {
         m_modelo = modelo;
         initComponents();
+
+        this.setLocationRelativeTo(null); //centramos la ventana en pantalla
     }
 
     /** This method is called from within the constructor to
@@ -179,11 +181,6 @@ public class AnotarNotasVista extends javax.swing.JFrame {
         notaFinalValue.setForeground(new java.awt.Color(121, 121, 121));
         notaFinalValue.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         notaFinalValue.setText("0.0");
-        notaFinalValue.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                notaFinalValueActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout pnlBodyLayout = new javax.swing.GroupLayout(pnlBody);
         pnlBody.setLayout(pnlBodyLayout);
@@ -258,10 +255,6 @@ public class AnotarNotasVista extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void notaFinalValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notaFinalValueActionPerformed
-        // TODO add your handling code here:
-}//GEN-LAST:event_notaFinalValueActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCerrar;
