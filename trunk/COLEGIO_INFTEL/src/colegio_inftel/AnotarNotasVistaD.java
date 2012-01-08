@@ -156,10 +156,12 @@ public class AnotarNotasVistaD extends javax.swing.JDialog {
         nota3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         nota3.setText("0.0");
 
+        notaFinalValue.setEditable(false);
         notaFinalValue.setForeground(new java.awt.Color(145, 145, 145));
         notaFinalValue.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         notaFinalValue.setText("0.0");
 
+        notaFinal.setEditable(false);
         notaFinal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         lbCalificacionFinal.setText("Calificación Final:");

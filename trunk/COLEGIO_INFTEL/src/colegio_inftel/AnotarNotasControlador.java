@@ -85,7 +85,7 @@ public class AnotarNotasControlador {
     class CerrarListener implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
-            System.out.println("Boton Cerrar pulsado");
+            m_vista.setVisible(false);
         }
 
     }
