@@ -8,8 +8,6 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
@@ -21,8 +19,6 @@ import java.util.ArrayList;
  */
 public class AnotarNotasControlador {
 
-    private static ArrayList<Double>    notas;
-
     private AnotarNotasModelo           m_modelo;
     private AnotarNotasVista            m_vista;
 
@@ -31,8 +27,6 @@ public class AnotarNotasControlador {
 
         m_modelo = modelo;
         m_vista = vista;
-
-        notas = m_vista.getNotas();
 
         m_vista.addGuardarListener(new GuardarListener());
         m_vista.addCerrarListener(new CerrarListener());
