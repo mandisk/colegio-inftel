@@ -2,16 +2,22 @@
 
 package colegio_inftel;
 
+import com.mysql.jdbc.Connection;
 import es.uma.masterinftel.colegio_inftel.modelo.dao.CalificacionesDAO;
+import es.uma.masterinftel.colegio_inftel.modelo.dto.CalificacionesDTO;
+import es.uma.masterinftel.colegio_inftel.utilidades.Conexion;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Controlador para la vista/modelo Anotar Notas
@@ -22,12 +28,17 @@ public class AnotarNotasControlador {
 
     //private AnotarNotasModelo            m_modelo;
     private CalificacionesDAO   m_modelo;
-    private AnotarNotasVistaD   m_vista;
+    private AnotarNotasVista   m_vista;
+
+    private int anio_mat=2007;
+    private int id_alumno=31;
+    private int codasignatura=1;
+
 
 
     //public AnotarNotasControlador(AnotarNotasModelo modelo, AnotarNotasVista vista){
     //public AnotarNotasControlador(AnotarNotasModelo modelo, AnotarNotasVistaD vista){
-    public AnotarNotasControlador(CalificacionesDAO modelo, AnotarNotasVistaD vista){
+    public AnotarNotasControlador(CalificacionesDAO modelo, AnotarNotasVista vista){
 
         m_modelo = modelo;
         m_vista  = vista;
@@ -82,7 +93,24 @@ public class AnotarNotasControlador {
         public void actionPerformed(ActionEvent e) {
             System.out.println("Boton Guardar pulsado");
 
+            CalificacionesDTO dto = new CalificacionesDTO();
+            Connection cnn = (Connection) Conexion.conectar();
 
+            dto.setAnio_mat_fk(anio_mat);
+            dto.setId_alumno_fk(id_alumno);
+            dto.setCodasignatura_fk(codasignatura);
+
+            dto.setNota_p1(m_vista.getN1());
+            dto.setNota_p2(m_vista.getN2());
+            dto.setNota_p3(m_vista.getN3());
+            dto.setNota_final(m_vista.getNFinal());
+
+            try {
+                System.out.println(dto.toString());
+                m_modelo.update(dto, cnn);
+            } catch (SQLException ex) {
+                Logger.getLogger(AnotarNotasControlador.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
 
         }
@@ -134,8 +162,8 @@ public class AnotarNotasControlador {
             dfs.setDecimalSeparator('.');
             formateador.setDecimalFormatSymbols(dfs);
 
-            System.out.println("Media: "+media);
-            System.out.println(m_vista.getNotas());
+            //System.out.println("Media: "+media);
+            //System.out.println(m_vista.getNotas());
             
             m_vista.setNotaFinal(formateador.format(media).toString());
 
@@ -163,6 +191,32 @@ public class AnotarNotasControlador {
            
         }
 
+    }
+
+
+    // Getters y Setters
+    public int getAnio_mat() {
+        return anio_mat;
+    }
+
+    public int getCodasignatura() {
+        return codasignatura;
+    }
+
+    public int getId_alumno() {
+        return id_alumno;
+    }
+
+    public void setAnio_mat(int anio_mat) {
+        this.anio_mat = anio_mat;
+    }
+
+    public void setCodasignatura(int codasignatura) {
+        this.codasignatura = codasignatura;
+    }
+
+    public void setId_alumno(int id_alumno) {
+        this.id_alumno = id_alumno;
     }
 
 
