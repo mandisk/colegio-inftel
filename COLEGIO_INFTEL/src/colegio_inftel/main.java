@@ -20,7 +20,7 @@ import es.uma.masterinftel.colegio_inftel.modelo.dao.CalificacionesDAO;
 public class main extends javax.swing.JFrame {
 
     public CalificacionesDAO        modelo;
-    public AnotarNotasVistaD        vista;
+    public AnotarNotasVista         vista;
     public AnotarNotasControlador   controlador;
 
     /** Creates new form main */
@@ -28,7 +28,7 @@ public class main extends javax.swing.JFrame {
 
         //modelo = new AnotarNotasModelo();
         modelo = new CalificacionesDAO();
-        vista = new AnotarNotasVistaD(modelo, this, true);
+        vista = new AnotarNotasVista(modelo, this, true);
         controlador = new AnotarNotasControlador(modelo,vista);
 
         this.setLocationRelativeTo(null);
