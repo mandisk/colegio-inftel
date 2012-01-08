@@ -19,11 +19,12 @@ import java.util.ArrayList;
  */
 public class AnotarNotasControlador {
 
-    private AnotarNotasModelo           m_modelo;
-    private AnotarNotasVista            m_vista;
+    private AnotarNotasModelo            m_modelo;
+    private AnotarNotasVistaD            m_vista;
 
 
-    public AnotarNotasControlador(AnotarNotasModelo modelo, AnotarNotasVista vista){
+    //public AnotarNotasControlador(AnotarNotasModelo modelo, AnotarNotasVista vista){
+    public AnotarNotasControlador(AnotarNotasModelo modelo, AnotarNotasVistaD vista){
 
         m_modelo = modelo;
         m_vista = vista;

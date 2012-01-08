@@ -22,7 +22,7 @@ public class AnotarNotasMVC {
                 public void run() {
                     vista.setVisible(true);
                 }
-                AnotarNotasControlador controlador = new AnotarNotasControlador(modelo,vista);
+               // AnotarNotasControlador controlador = new AnotarNotasControlador(modelo,vista);
 
 
 

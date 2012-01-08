@@ -17,11 +17,17 @@ package colegio_inftel;
  */
 public class main extends javax.swing.JFrame {
 
-    public AnotarNotasVistaD v;
+    public AnotarNotasModelo modelo;
+    public AnotarNotasVistaD vista;
+    public AnotarNotasControlador controlador;
 
     /** Creates new form main */
     public main() {
-        v = new AnotarNotasVistaD(this, true);
+
+        modelo = new AnotarNotasModelo();
+        vista = new AnotarNotasVistaD(modelo, this, true);
+        controlador = new AnotarNotasControlador(modelo,vista);
+
         this.setLocationRelativeTo(null);
 
         initComponents();
@@ -69,7 +75,7 @@ public class main extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:       
-        v.setVisible(true);
+        vista.setVisible(true);
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -88,11 +94,15 @@ public class main extends javax.swing.JFrame {
 
 
 
-
-
             }
         });
     }
+
+
+
+
+
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
