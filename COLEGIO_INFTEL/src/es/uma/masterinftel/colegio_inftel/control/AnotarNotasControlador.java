@@ -1,9 +1,11 @@
-
+/**
+ * AnotarNotasControlador.java
+ *
+ */
 
 package es.uma.masterinftel.colegio_inftel.control;
 
 import es.uma.masterinftel.colegio_inftel.vistas.AnotarNotasVista;
-import colegio_inftel.*;
 import com.mysql.jdbc.Connection;
 import es.uma.masterinftel.colegio_inftel.modelo.dao.CalificacionesDAO;
 import es.uma.masterinftel.colegio_inftel.modelo.dto.CalificacionesDTO;
@@ -24,11 +26,10 @@ import java.util.logging.Logger;
 /**
  * Controlador para la vista/modelo Anotar Notas
  *
- * @author agumpg
+ * @author Agustín Pereña
  */
 public class AnotarNotasControlador {
 
-    //private AnotarNotasModelo            m_modelo;
     private CalificacionesDAO   m_modelo;
     private AnotarNotasVista   m_vista;
 
@@ -37,9 +38,6 @@ public class AnotarNotasControlador {
     private int codasignatura=1;
 
 
-
-    //public AnotarNotasControlador(AnotarNotasModelo modelo, AnotarNotasVista vista){
-    //public AnotarNotasControlador(AnotarNotasModelo modelo, AnotarNotasVistaD vista){
     public AnotarNotasControlador(CalificacionesDAO modelo, AnotarNotasVista vista){
 
         m_modelo = modelo;
@@ -49,7 +47,6 @@ public class AnotarNotasControlador {
         m_vista.addCerrarListener(new CerrarListener());
         m_vista.addValidarNotasKeyTyped(new ValidarNotasListener());
         m_vista.addFormatearNota( new FormatearNotas());
-
 
     }
 
@@ -93,30 +90,42 @@ public class AnotarNotasControlador {
     class GuardarListener implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
-            System.out.println("Boton Guardar pulsado");
 
-            CalificacionesDTO dto = new CalificacionesDTO();
-            Connection cnn = (Connection) Conexion.conectar();
+            Runnable miRunnable = new Runnable(){
 
-            dto.setAnio_mat_fk(anio_mat);
-            dto.setId_alumno_fk(id_alumno);
-            dto.setCodasignatura_fk(codasignatura);
+                public void run() {
 
-            dto.setNota_p1(m_vista.getN1());
-            dto.setNota_p2(m_vista.getN2());
-            dto.setNota_p3(m_vista.getN3());
-            dto.setNota_final(m_vista.getNFinal());
+                    try{
 
-            try {
-                System.out.println(dto.toString());
-                m_modelo.update(dto, cnn);
-            } catch (SQLException ex) {
-                Logger.getLogger(AnotarNotasControlador.class.getName()).log(Level.SEVERE, null, ex);
-            }
+                        CalificacionesDTO dto = new CalificacionesDTO();
+                        Connection cnn = (Connection) Conexion.conectar();
 
+                        dto.setAnio_mat_fk(anio_mat);
+                        dto.setId_alumno_fk(id_alumno);
+                        dto.setCodasignatura_fk(codasignatura);
 
+                        dto.setNota_p1(m_vista.getN1());
+                        dto.setNota_p2(m_vista.getN2());
+                        dto.setNota_p3(m_vista.getN3());
+                        dto.setNota_final(m_vista.getNFinal());
+
+                        try {
+                            System.out.println(dto.toString());
+                            m_modelo.update(dto, cnn);
+                        } catch (SQLException ex) {
+                            Logger.getLogger(AnotarNotasControlador.class.
+                                        getName()).log(Level.SEVERE, null, ex);
+                        }
+
+                    } catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+            };
+
+            Thread hilo = new Thread(miRunnable);
+            hilo.start();
         }
-
     }
 
     class CerrarListener implements ActionListener {
@@ -164,9 +173,6 @@ public class AnotarNotasControlador {
             dfs.setDecimalSeparator('.');
             formateador.setDecimalFormatSymbols(dfs);
 
-            //System.out.println("Media: "+media);
-            //System.out.println(m_vista.getNotas());
-            
             m_vista.setNotaFinal(formateador.format(media).toString());
 
         }

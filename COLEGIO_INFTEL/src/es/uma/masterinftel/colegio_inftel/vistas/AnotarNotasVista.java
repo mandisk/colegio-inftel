@@ -1,12 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /*
- * AnotarNotasVistaD.java
+ * AnotarNotasVista.java
  *
- * Created on 08-ene-2012, 13:25:09
  */
 
 package es.uma.masterinftel.colegio_inftel.vistas;
@@ -19,7 +14,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author agumpg
+ * @author Agustin Pereña
  */
 public class AnotarNotasVista extends javax.swing.JDialog {
 
@@ -273,22 +268,6 @@ public class AnotarNotasVista extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-    * @param args the command line arguments
-    */
-//    public static void main(String args[]) {
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                AnotarNotasVistaD dialog = new AnotarNotasVistaD(new javax.swing.JFrame(), true);
-//                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-//                    public void windowClosing(java.awt.event.WindowEvent e) {
-//                        System.exit(0);
-//                    }
-//                });
-//                dialog.setVisible(true);
-//            }
-//        });
-//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCerrar;
