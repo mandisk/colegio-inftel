@@ -11,6 +11,7 @@
 
 package colegio_inftel;
 
+import es.uma.masterinftel.colegio_inftel.modelo.dao.CalificacionesDAO;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyListener;
@@ -22,11 +23,12 @@ import java.util.ArrayList;
  */
 public class AnotarNotasVistaD extends javax.swing.JDialog {
 
-    private AnotarNotasModelo m_modelo;
-
+    //private AnotarNotasModelo m_modelo;
+    private CalificacionesDAO m_modelo;
 
     /** Creates new form AnotarNotasVistaD */
-    public AnotarNotasVistaD(AnotarNotasModelo modelo, java.awt.Frame parent, boolean modal) {
+    //public AnotarNotasVistaD(AnotarNotasModelo modelo, java.awt.Frame parent, boolean modal) {
+    public AnotarNotasVistaD(CalificacionesDAO modelo, java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         this.m_modelo = modelo;
         initComponents();
