@@ -11,7 +11,8 @@
 
 package es.uma.masterinftel.colegio_inftel.vistas;
 
-import es.uma.masterinftel.colegio_inftel.modelo.dao.ProfesoresDAO;
+import es.uma.masterinftel.colegio_inftel.modelo.dao.*;
+import es.uma.masterinftel.colegio_inftel.control.*;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
@@ -20,12 +21,12 @@ import javax.swing.JOptionPane;
  * @author BlackCrystal™
  */
 public class LoginVista extends javax.swing.JFrame {
-
     
     private ProfesoresDAO m_modelo;
     
     /** Creates new form LoginVista */
     public LoginVista(ProfesoresDAO modelo) {
+        
         initComponents();
         
         //Centramos la ventana en pantalla
@@ -67,7 +68,6 @@ public class LoginVista extends javax.swing.JFrame {
             }
         });
 
-        txtPassword.setText("jPasswordField1");
         txtPassword.setToolTipText("introduzca contraseña");
         txtPassword.setName("passwordText"); // NOI18N
         txtPassword.addActionListener(new java.awt.event.ActionListener() {
@@ -106,9 +106,9 @@ public class LoginVista extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(69, 69, 69)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -204,18 +204,40 @@ public class LoginVista extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this,
                 "Se ha producido un error validando usuario y password");
     }
-
-    public void printMensajeValidacionUsuario(boolean bTest) {
-        if (bTest) {
-            JOptionPane.showMessageDialog(this,
-                    "Usuario validado");
-        } else {
-            JOptionPane.showMessageDialog(this,
-                    "Usuario no validado");
-        }
+  
+    public void usuarioValidado() {      
+        // Navega a la ventana principal:
+        
+        EscuelaModeloDAO next_modelo = new EscuelaModeloDAO();
+        EscuelaVistaPrincipal next_vista = new EscuelaVistaPrincipal(next_modelo);
+        EscuelaControlador next_controlador = new EscuelaControlador(next_modelo,next_vista);
+        
+        this.setVisible(false);
+        next_vista.setVisible(true);
+        
     }
     
     public void salir() {
         System.exit(0);
+    }
+    
+    public void focoInicial() {
+        txtUsuario.grabFocus();
+    }
+    
+    public static void main(String args[]) {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                
+                ProfesoresDAO modelo = new ProfesoresDAO();
+                LoginVista vista = new LoginVista(modelo);
+                LoginControlador control = new LoginControlador(modelo,vista);
+  
+                vista.setVisible(true);
+                
+                //AnotarIncidenciasVista dialog = new AnotarIncidenciasVista(new IncidenciasDAO(),new javax.swing.JFrame(), true);
+
+            }
+        });
     }
 }

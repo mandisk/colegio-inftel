@@ -33,9 +33,9 @@
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnAceptar" min="-2" pref="84" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btnCancelar" min="-2" pref="84" max="-2" attributes="0"/>
+                      <Component id="btnAceptar" min="-2" pref="89" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="btnCancelar" min="-2" pref="92" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
@@ -103,7 +103,6 @@
     </Component>
     <Component class="javax.swing.JPasswordField" name="txtPassword">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jPasswordField1"/>
         <Property name="toolTipText" type="java.lang.String" value="introduzca contrase&#xf1;a"/>
         <Property name="name" type="java.lang.String" value="passwordText" noResource="true"/>
       </Properties>
