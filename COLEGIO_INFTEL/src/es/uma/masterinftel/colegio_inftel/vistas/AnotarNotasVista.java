@@ -21,6 +21,12 @@ public class AnotarNotasVista extends javax.swing.JDialog {
     //private AnotarNotasModelo m_modelo;
     private CalificacionesDAO m_modelo;
 
+    private Integer anio_mat;
+    private Integer id_alumno;
+    private Integer codasignatura;
+
+
+
     /** Creates new form AnotarNotasVistaD */
     //public AnotarNotasVistaD(AnotarNotasModelo modelo, java.awt.Frame parent, boolean modal) {
     public AnotarNotasVista(CalificacionesDAO modelo, java.awt.Frame parent, boolean modal) {
@@ -44,7 +50,7 @@ public class AnotarNotasVista extends javax.swing.JDialog {
         lbAlumno = new javax.swing.JLabel();
         lbAsignatura = new javax.swing.JLabel();
         lbAlumnoValue = new javax.swing.JLabel();
-        lbInformaticaValue = new javax.swing.JLabel();
+        lbAsignaturaValue = new javax.swing.JLabel();
         lbCurso = new javax.swing.JLabel();
         lbGrupo = new javax.swing.JLabel();
         lbCursoValue = new javax.swing.JLabel();
@@ -64,6 +70,7 @@ public class AnotarNotasVista extends javax.swing.JDialog {
         lbCalificacionFinal = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Calificaciones");
         setResizable(false);
 
         pCabecera.setBackground(new java.awt.Color(255, 254, 254));
@@ -75,8 +82,8 @@ public class AnotarNotasVista extends javax.swing.JDialog {
         lbAlumnoValue.setForeground(new java.awt.Color(33, 94, 186));
         lbAlumnoValue.setText("Alfonso Pérez Sánchez");
 
-        lbInformaticaValue.setForeground(new java.awt.Color(140, 140, 140));
-        lbInformaticaValue.setText("Informática");
+        lbAsignaturaValue.setForeground(new java.awt.Color(140, 140, 140));
+        lbAsignaturaValue.setText("Informática");
 
         lbCurso.setText("Curso:");
 
@@ -100,7 +107,7 @@ public class AnotarNotasVista extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(pCabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbAlumnoValue)
-                    .addComponent(lbInformaticaValue))
+                    .addComponent(lbAsignaturaValue))
                 .addGap(90, 90, 90)
                 .addGroup(pCabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lbGrupo)
@@ -109,7 +116,7 @@ public class AnotarNotasVista extends javax.swing.JDialog {
                 .addGroup(pCabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbCursoValue)
                     .addComponent(lbGrupoValue))
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
         pCabeceraLayout.setVerticalGroup(
             pCabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,7 +132,7 @@ public class AnotarNotasVista extends javax.swing.JDialog {
                     .addComponent(lbAsignatura)
                     .addComponent(lbGrupoValue)
                     .addComponent(lbGrupo)
-                    .addComponent(lbInformaticaValue))
+                    .addComponent(lbAsignaturaValue))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -232,7 +239,7 @@ public class AnotarNotasVista extends javax.swing.JDialog {
                     .addGroup(pCuerpoLayout.createSequentialGroup()
                         .addGap(16, 16, 16)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         pCuerpoLayout.setVerticalGroup(
             pCuerpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -253,8 +260,8 @@ public class AnotarNotasVista extends javax.swing.JDialog {
             .addComponent(pCabecera, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(6, 6, 6)
-                .addComponent(pCuerpo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(6, 6, 6))
+                .addComponent(pCuerpo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -276,12 +283,12 @@ public class AnotarNotasVista extends javax.swing.JDialog {
     private javax.swing.JLabel lbAlumno;
     private javax.swing.JLabel lbAlumnoValue;
     private javax.swing.JLabel lbAsignatura;
+    private javax.swing.JLabel lbAsignaturaValue;
     private javax.swing.JLabel lbCalificacionFinal;
     private javax.swing.JLabel lbCurso;
     private javax.swing.JLabel lbCursoValue;
     private javax.swing.JLabel lbGrupo;
     private javax.swing.JLabel lbGrupoValue;
-    private javax.swing.JLabel lbInformaticaValue;
     private javax.swing.JLabel lbPrimera;
     private javax.swing.JLabel lbSegunda;
     private javax.swing.JLabel lbTercera;
@@ -420,6 +427,67 @@ public class AnotarNotasVista extends javax.swing.JDialog {
         nota3.setText(nota);
     }
 
+
+
+
+
+    public void setAlumno(String alumno) {
+        lbAlumnoValue.setText(alumno);
+    }
+
+    public void setAsignatura(String asignatura) {
+        lbAsignaturaValue.setText(asignatura);
+    }
+
+    public void setCurso(String curso) {
+        lbCursoValue.setText(curso);
+    }
+
+    public void setGrupo(String grupo) {
+        lbGrupoValue.setText(grupo);
+    }
+
+    public String getAlumno() {
+        return lbAlumnoValue.getText();
+    }
+
+    public String getAsignatura() {
+        return lbAsignaturaValue.getText();
+    }
+
+    public String getCurso() {
+        return lbCursoValue.getText();
+    }
+
+    public String getGrupo() {
+        return lbGrupoValue.getText();
+    }
+
+
+    
+    public Integer getAnio_mat() {
+        return anio_mat;
+    }
+
+    public Integer getCodasignatura() {
+        return codasignatura;
+    }
+
+    public Integer getId_alumno() {
+        return id_alumno;
+    }
+
+    public void setAnio_mat(Integer anio_mat) {
+        this.anio_mat = anio_mat;
+    }
+
+    public void setCodasignatura(Integer codasignatura) {
+        this.codasignatura = codasignatura;
+    }
+
+    public void setId_alumno(Integer id_alumno) {
+        this.id_alumno = id_alumno;
+    }
 
 
 }

@@ -31,12 +31,7 @@ import java.util.logging.Logger;
 public class AnotarNotasControlador {
 
     private CalificacionesDAO   m_modelo;
-    private AnotarNotasVista   m_vista;
-
-    private int anio_mat=2007;
-    private int id_alumno=31;
-    private int codasignatura=1;
-
+    private AnotarNotasVista    m_vista;
 
     public AnotarNotasControlador(CalificacionesDAO modelo, AnotarNotasVista vista){
 
@@ -96,13 +91,13 @@ public class AnotarNotasControlador {
                 public void run() {
 
                     try{
-
+                       
                         CalificacionesDTO dto = new CalificacionesDTO();
                         Connection cnn = (Connection) Conexion.conectar();
 
-                        dto.setAnio_mat_fk(anio_mat);
-                        dto.setId_alumno_fk(id_alumno);
-                        dto.setCodasignatura_fk(codasignatura);
+                        dto.setAnio_mat_fk(m_vista.getAnio_mat());
+                        dto.setId_alumno_fk(m_vista.getId_alumno());
+                        dto.setCodasignatura_fk(m_vista.getCodasignatura());
 
                         dto.setNota_p1(m_vista.getN1());
                         dto.setNota_p2(m_vista.getN2());
@@ -199,32 +194,6 @@ public class AnotarNotasControlador {
            
         }
 
-    }
-
-
-    // Getters y Setters
-    public int getAnio_mat() {
-        return anio_mat;
-    }
-
-    public int getCodasignatura() {
-        return codasignatura;
-    }
-
-    public int getId_alumno() {
-        return id_alumno;
-    }
-
-    public void setAnio_mat(int anio_mat) {
-        this.anio_mat = anio_mat;
-    }
-
-    public void setCodasignatura(int codasignatura) {
-        this.codasignatura = codasignatura;
-    }
-
-    public void setId_alumno(int id_alumno) {
-        this.id_alumno = id_alumno;
     }
 
 
