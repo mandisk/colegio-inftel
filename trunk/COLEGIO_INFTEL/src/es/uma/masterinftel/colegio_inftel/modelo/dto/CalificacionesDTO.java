@@ -7,7 +7,7 @@ package es.uma.masterinftel.colegio_inftel.modelo.dto;
 
 /**
  *
- * @author agumpg
+ * @author Agustin Pereña
  */
 public class CalificacionesDTO {
 
