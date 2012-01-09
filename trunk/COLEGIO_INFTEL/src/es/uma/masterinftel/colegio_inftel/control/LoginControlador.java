@@ -23,6 +23,7 @@ public class LoginControlador {
     private ProfesoresDAO   m_modelo;
     private LoginVista   m_vista;
     
+    
     public LoginControlador(ProfesoresDAO modelo, LoginVista vista){
 
         m_modelo = modelo;
@@ -30,6 +31,8 @@ public class LoginControlador {
 
         m_vista.addAceptarListener(new AceptarListener());
         m_vista.addCancelarListener(new CancelarListener());
+        
+        m_vista.focoInicial();
 
     }
    
@@ -90,7 +93,10 @@ public class LoginControlador {
                             ProfesoresDTO profesor = m_modelo.findProfesorByUsuario(user);
                             if (profesor != null) {
                                 bTest = md5(pass).equals(profesor.getPassword());
-                                m_vista.printMensajeValidacionUsuario(bTest);
+                                if (bTest) 
+                                    m_vista.usuarioValidado();
+                                else
+                                    m_vista.printMensajeUserPassIncorrectos();
                             } else {
                                 m_vista.printMensajeUserPassIncorrectos();
                             }
