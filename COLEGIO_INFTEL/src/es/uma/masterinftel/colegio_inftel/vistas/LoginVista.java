@@ -46,7 +46,7 @@ public class LoginVista extends javax.swing.JFrame {
         txtUsuario = new javax.swing.JTextField();
         txtPassword = new javax.swing.JPasswordField();
         btnAceptar = new javax.swing.JButton();
-        btnSalir = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
         lblTitulo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -84,10 +84,10 @@ public class LoginVista extends javax.swing.JFrame {
             }
         });
 
-        btnSalir.setText("Salir");
-        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalirActionPerformed(evt);
+                btnCancelarActionPerformed(evt);
             }
         });
 
@@ -108,7 +108,7 @@ public class LoginVista extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(69, 69, 69)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -135,7 +135,7 @@ public class LoginVista extends javax.swing.JFrame {
                     .addComponent(lblPassword))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSalir)
+                    .addComponent(btnCancelar)
                     .addComponent(btnAceptar))
                 .addGap(25, 25, 25))
         );
@@ -151,9 +151,9 @@ public class LoginVista extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnAceptarActionPerformed
 
-    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
 
-    }//GEN-LAST:event_btnSalirActionPerformed
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
         // TODO add your handling code here:
@@ -165,7 +165,7 @@ public class LoginVista extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
-    private javax.swing.JButton btnSalir;
+    private javax.swing.JButton btnCancelar;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JLabel lblUsuario;
@@ -178,8 +178,8 @@ public class LoginVista extends javax.swing.JFrame {
         btnAceptar.addActionListener(a);
     }
 
-    public void addSalirListener(ActionListener a){
-        btnSalir.addActionListener(a);
+    public void addCancelarListener(ActionListener a){
+        btnCancelar.addActionListener(a);
     }
     
     public String getUsuario() {
