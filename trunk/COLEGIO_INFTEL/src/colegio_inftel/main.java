@@ -48,6 +48,7 @@ public class main extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,31 +59,76 @@ public class main extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("Prueba label");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(137, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(133, 133, 133))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(133, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(133, 133, 133))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton2)
+                        .addGap(147, 147, 147))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(139, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addGap(132, 132, 132))
+                .addGap(28, 28, 28)
+                .addComponent(jButton2)
+                .addGap(75, 75, 75))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:       
+        // TODO add your handling code here:
+
+        vista.setAnio_mat(2007);
+        vista.setId_alumno(31);
+        vista.setCodasignatura(1);
+
+        vista.setAlumno("Manuel Valls");
+        vista.setGrupo("B");
+        vista.setAsignatura("Química");
+        vista.setCurso("1º de ESO");
+        vista.setNota1("5.0");
+        vista.setNota2("5.0");
+        vista.setNota3("5.0");
+        vista.setNotaFinal("5.0");
         vista.setVisible(true);
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        vista.setAnio_mat(2007);
+        vista.setId_alumno(31);
+        vista.setCodasignatura(2);
+
+        vista.setAlumno("Agustín Pereña");
+        vista.setGrupo("A");
+        vista.setAsignatura("Física");
+        vista.setCurso("2º de ESO");
+        vista.setNota1("6.0");
+        vista.setNota2("6.0");
+        vista.setNota3("6.0");
+        vista.setNotaFinal("6.0");
+        vista.setVisible(true);
+
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
     * @param args the command line arguments
@@ -105,6 +151,7 @@ public class main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     // End of variables declaration//GEN-END:variables
 
 }
