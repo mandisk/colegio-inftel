@@ -29,7 +29,7 @@ public class LoginControlador {
         m_vista  = vista;
 
         m_vista.addAceptarListener(new AceptarListener());
-        m_vista.addSalirListener(new SalirListener());
+        m_vista.addCancelarListener(new CancelarListener());
 
     }
    
@@ -108,7 +108,7 @@ public class LoginControlador {
         }
     }
 
-    class SalirListener implements ActionListener {
+    class CancelarListener implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
             m_vista.salir();
