@@ -28,9 +28,9 @@ public class Conexion {
     public static Connection conectar() {
 
 
-                System.out.println(bd.getUri());
-                System.out.println(bd.getUsuario());
-                System.out.println(bd.getClave());
+               // System.out.println(bd.getUri());
+               // System.out.println(bd.getUsuario());
+               // System.out.println(bd.getClave());
 
         if (conn == null) {
             try {
