@@ -23,24 +23,22 @@ import java.util.Properties;
  */
 public class ConfigBD {
 
-    private Properties p;
-
     /**
-     * Atributos miembros para la carga y lectura posterior de los datos
+     * Atributos de clase para la carga y lectura posterior de los datos
      * de configuración de la Base de Datos
      */
-    private String uri;
-    private String usuario;
-    private String clave;
+    public static String uri;
+    public static String usuario;
+    public static String clave;
 
     /**
-     * Constructor de la clase
+     * Método de clase para la lectura del fichero de propiedades
      * @param fileName nombre del fichero properties con los datos de conexión
      *                 a la Base de Datos
      */
-    public ConfigBD(String fileName) {
+    public static void Configurar(String fileName) {
 
-        p = new Properties();
+        Properties p = new Properties();
         try {
             FileInputStream config = new FileInputStream(fileName);
             //InputStream config = ClassLoader.getSystemResourceAsStream(ConfigBD.class.getPackage().getName() + "/" + fileName);
@@ -58,30 +56,5 @@ public class ConfigBD {
         clave   =p.getProperty("password");
 
     }
-
-    /**
-     * Getter del atributo miembro clave
-     * @return (String) clave de conexión a la BD
-     */
-    public String getClave() {
-        return clave;
-    }
-
-    /**
-     * Getter del atributo miembro URI
-     * @return (String) uri de conexión a la BD
-     */
-    public String getUri() {
-        return uri;
-    }
-
-    /**
-     * Getter del atributo miembro usuario
-     * @return (String) usuario de la BD
-     */
-    public String getUsuario() {
-        return usuario;
-    }
-
 
 }
