@@ -44,6 +44,7 @@ public class EscuelaControlador {
         //Aquí se localizan los métodos de escucha
         vista.addSearchListener(new SearchListener());
         vista.addFilterName(new FilterListener());
+        vista.addAnotarNotasListener(new CalificacionesListener());
     }
     
     class SearchListener implements ActionListener {
