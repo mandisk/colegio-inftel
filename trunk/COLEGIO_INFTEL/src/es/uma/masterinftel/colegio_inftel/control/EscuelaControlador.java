@@ -2,11 +2,17 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package es.uma.masterinftel.colegio_inftel.control;
+//package colegio_inftel;
 
+package es.uma.masterinftel.colegio_inftel.control;
+import es.uma.masterinftel.colegio_inftel.control.AnotarNotasControlador;
+import es.uma.masterinftel.colegio_inftel.modelo.dao.CalificacionesDAO;
+import es.uma.masterinftel.colegio_inftel.vistas.AnotarNotasVista;
 import es.uma.masterinftel.colegio_inftel.modelo.dao.EscuelaModeloDAO;
-import es.uma.masterinftel.colegio_inftel.vistas.*;
+import es.uma.masterinftel.colegio_inftel.vistas.EscuelaVistaPrincipal;
 import java.awt.event.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import javax.swing.table.TableModel;
 import javax.swing.RowFilter;
 import javax.swing.event.DocumentListener;
@@ -20,15 +26,29 @@ public class EscuelaControlador {
     //Necesitamos que el controlador interactue con el Modelo y la vista
     private EscuelaModeloDAO m_modelo;
     private EscuelaVistaPrincipal m_vista;
+
+    //Formulario Anotar Calificaciones
+    protected CalificacionesDAO        m_calificaciones;
+    protected AnotarNotasVista         v_calificaciones;
+    protected AnotarNotasControlador   c_calificaciones;
+
     
     /** Constructor */
     public EscuelaControlador(EscuelaModeloDAO modelo, EscuelaVistaPrincipal vista){
-    m_modelo = modelo;
-    m_vista = vista;
-    
-    //Aquí se localizan los métodos de escucha
-    vista.addSearchListener(new SearchListener());
-    vista.addFilterName(new FilterListener());
+        m_modelo = modelo;
+        m_vista = vista;
+
+        //Creación del formulario Anotar Calificaciones
+        m_calificaciones = new CalificacionesDAO();
+        v_calificaciones = new AnotarNotasVista(m_calificaciones, m_vista, true);
+        c_calificaciones = new AnotarNotasControlador(m_calificaciones,v_calificaciones);
+
+
+
+        //Aquí se localizan los métodos de escucha
+        vista.addSearchListener(new SearchListener());
+        vista.addFilterName(new FilterListener());
+        vista.addAnotarNotasListener(new CalificacionesListener());
     }
     
     class SearchListener implements ActionListener {
@@ -69,6 +89,40 @@ public class EscuelaControlador {
         }
         m_modelo.sorter.setRowFilter(rf);
     }
-    
+      
   }
+
+    /**
+     * Clase listener para ejecutar la acción del botón Editar Calificaiones
+     * 
+     */
+
+    class CalificacionesListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+            System.out.println("Pulsado");
+
+            v_calificaciones.setAnio_mat(2007);
+            v_calificaciones.setId_alumno(31);
+            v_calificaciones.setCodasignatura(1);
+
+            v_calificaciones.setAlumno("Agustín Pereña");
+            v_calificaciones.setGrupo("C");
+            v_calificaciones.setAsignatura("Matemáticas");
+            v_calificaciones.setCurso("4º de ESO");
+            v_calificaciones.setNota1("7.0");
+            v_calificaciones.setNota2("7.0");
+            v_calificaciones.setNota3("7.0");
+            v_calificaciones.setNotaFinal("7.0");
+
+            v_calificaciones.setVisible(true);
+        }
+
+    }
+
+
+
+
 }
