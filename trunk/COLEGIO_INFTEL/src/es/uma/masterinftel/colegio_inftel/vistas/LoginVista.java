@@ -204,18 +204,6 @@ public class LoginVista extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this,
                 "Se ha producido un error validando usuario y password");
     }
-  
-    public void usuarioValidado() {      
-        // Navega a la ventana principal:
-        
-        EscuelaModeloDAO next_modelo = new EscuelaModeloDAO();
-        EscuelaVistaPrincipal next_vista = new EscuelaVistaPrincipal(next_modelo);
-        EscuelaControlador next_controlador = new EscuelaControlador(next_modelo,next_vista);
-        
-        this.setVisible(false);
-        next_vista.setVisible(true);
-        
-    }
     
     public void salir() {
         System.exit(0);
