@@ -11,8 +11,8 @@ package es.uma.masterinftel.colegio_inftel.utilidades;
  */
 public class Constantes {
 
-    protected static final String FICHERO_CONFIGURACION_DB="database.properties";
-
+    public static final String FICHERO_CONFIGURACION_DB="database.properties";
+    public static final Integer ROL_JEFE_DE_ESTUDIOS = 2;
     
 
 }
