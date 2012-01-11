@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author BlackCrystal™
+ * @author jsbaes
  */
 public class LoginVista extends javax.swing.JFrame {
     
