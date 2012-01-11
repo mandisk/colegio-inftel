@@ -12,6 +12,7 @@
 package es.uma.masterinftel.colegio_inftel.vistas;
 
 import es.uma.masterinftel.colegio_inftel.modelo.dao.EscuelaModeloDAO;
+import es.uma.masterinftel.colegio_inftel.utilidades.Constantes;
 import java.awt.event.ActionListener;
 import javax.swing.table.DefaultTableModel;
 
@@ -26,7 +27,7 @@ import javax.swing.event.DocumentListener;
 public class EscuelaVistaPrincipal extends javax.swing.JFrame {
     private EscuelaModeloDAO m_modelo;
     
-    
+    private boolean bJefeDeEstudios;
     
     /** Creates new form EscuelaVistaPrincipal */
     public EscuelaVistaPrincipal(EscuelaModeloDAO modelo) {
@@ -39,6 +40,8 @@ public class EscuelaVistaPrincipal extends javax.swing.JFrame {
         m_modelo.rellenaTabla(1,1,1);
       // copiarDatos(m_modelo.tabla,jTable1);
         
+        //Indica si el usuario tiene rol de jefe de estudios
+       
         
         initComponents();
     }
@@ -380,6 +383,9 @@ public class EscuelaVistaPrincipal extends javax.swing.JFrame {
         btCalificaciones.addActionListener(a);
     }
 
-
+    public void setRolJefeDeEstudios(Integer rolUsuario) {
+        bJefeDeEstudios = (rolUsuario == Constantes.ROL_JEFE_DE_ESTUDIOS);
+        System.out.println("bJefeDeEstudios: " + bJefeDeEstudios);
+    }
 
 }
