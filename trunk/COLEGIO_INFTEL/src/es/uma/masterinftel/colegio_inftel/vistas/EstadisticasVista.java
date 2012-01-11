@@ -9,6 +9,7 @@
  * Created on 08-ene-2012, 14:06:37
  */
 package es.uma.masterinftel.colegio_inftel.vistas;
+import es.uma.masterinftel.colegio_inftel.control.EstadisticasControlador;
 import colegio_inftel.*;
 import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
@@ -62,7 +63,7 @@ public class EstadisticasVista extends javax.swing.JDialog {
         anioCursoComboBox = new javax.swing.JComboBox();
         jLabel11 = new javax.swing.JLabel();
         btnEstadistica4 = new javax.swing.JButton();
-        jPanel5 = new javax.swing.JPanel();
+        estadisticasPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Estadisticas");
@@ -266,16 +267,16 @@ public class EstadisticasVista extends javax.swing.JDialog {
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        estadisticasPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout estadisticasPanelLayout = new javax.swing.GroupLayout(estadisticasPanel);
+        estadisticasPanel.setLayout(estadisticasPanelLayout);
+        estadisticasPanelLayout.setHorizontalGroup(
+            estadisticasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 516, Short.MAX_VALUE)
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        estadisticasPanelLayout.setVerticalGroup(
+            estadisticasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 457, Short.MAX_VALUE)
         );
 
@@ -287,7 +288,7 @@ public class EstadisticasVista extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(estadisticasPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -314,7 +315,7 @@ public class EstadisticasVista extends javax.swing.JDialog {
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(estadisticasPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(75, Short.MAX_VALUE))
         );
 
@@ -388,6 +389,7 @@ EstadisticasVista vista;
     private javax.swing.JButton btnEstadistica3;
     private javax.swing.JButton btnEstadistica4;
     private javax.swing.JComboBox cursoComboBox;
+    private javax.swing.JPanel estadisticasPanel;
     private static javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -403,7 +405,6 @@ EstadisticasVista vista;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JComboBox profesorComboBox;
     // End of variables declaration//GEN-END:variables
 
@@ -437,4 +438,5 @@ EstadisticasVista vista;
     public void addEstadistica4Listener(ActionListener a){
         btnEstadistica4.addActionListener(a);
     }
+                
 }
