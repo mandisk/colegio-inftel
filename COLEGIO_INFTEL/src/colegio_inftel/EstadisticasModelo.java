@@ -44,7 +44,7 @@ public class EstadisticasModelo {
         ArrayList<Aula> resultado = new ArrayList<Aula>();
 
         //obtener codasignatura de la asignatura(array)
-        ArrayList<AsignaturasDTO> asignaturas = modeloAsignatura.obtenerAsignaturas(Conexion.conn);
+º        ArrayList<AsignaturasDTO> asignaturas = modeloAsignatura.obtenerAsignaturas(Conexion.conn);
         //obtener id de curso del curso(array)
         ArrayList<CursosDTO> cursos = modeloCurso.obtenerCursos(Conexion.conn);
 
