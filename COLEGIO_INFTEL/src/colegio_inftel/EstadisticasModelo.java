@@ -3,6 +3,7 @@
  * and open the template in the editor.
  */
 package colegio_inftel;
+import es.uma.masterinftel.colegio_inftel.utilidades.Aula;
 import es.uma.masterinftel.colegio_inftel.modelo.dao.AsignaturasDAO;
 import es.uma.masterinftel.colegio_inftel.modelo.dao.CursosDAO;
 import es.uma.masterinftel.colegio_inftel.modelo.dto.AsignaturasDTO;
