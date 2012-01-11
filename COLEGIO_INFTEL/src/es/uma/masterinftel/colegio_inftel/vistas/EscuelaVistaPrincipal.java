@@ -378,7 +378,10 @@ public class EscuelaVistaPrincipal extends javax.swing.JFrame {
     public void addFilterName(DocumentListener name){
         textNombre.getDocument().addDocumentListener(name);
     }
-
+    // añadido por Luis oyente boton incidencias
+   public void addIncidenciasListener(ActionListener ver){
+       btIncidencias.addActionListener(ver);
+   }
     public void addAnotarNotasListener(ActionListener a){
         btCalificaciones.addActionListener(a);
     }
