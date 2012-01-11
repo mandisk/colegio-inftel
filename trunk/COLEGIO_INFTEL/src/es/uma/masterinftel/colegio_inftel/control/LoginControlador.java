@@ -24,7 +24,7 @@ public class LoginControlador {
     private ProfesoresDAO  m_modelo;
     private LoginVista     m_vista;
     
-    private RolProfesorDAO m_rol = new RolProfesorDAO();
+    private RolProfesorDAO rol = new RolProfesorDAO();
     
     
     public LoginControlador(ProfesoresDAO modelo, LoginVista vista){
@@ -108,7 +108,7 @@ public class LoginControlador {
                                 bTest = md5(pass).equals(profesor.getPassword());
                                 if (bTest) {
                                     // El usuario es válido
-                                    RolProfesorDTO rolProfesor = m_rol.findRolByProfesorId(profesor.getId());
+                                    RolProfesorDTO rolProfesor = rol.findRolByProfesorId(profesor.getId());
                                     navegacion(rolProfesor.getId_rol_fk());
                                 }
                                 else
