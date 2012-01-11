@@ -15,7 +15,7 @@ import java.sql.SQLException;
  *
  * @author agumpg
  */
-public class CalificacionesDAO {
+public class CalificacionesDAO extends GenericDAO {
 
     public static final String SQL_UPDATE_CALIFICACIONES =
            "UPDATE CALIFICACIONES SET " +
@@ -29,30 +29,21 @@ public class CalificacionesDAO {
     public void update(CalificacionesDTO dto, Connection conexion) throws SQLException{
         PreparedStatement ps = null;
         try {
-            ps = (PreparedStatement) conexion.prepareStatement(SQL_UPDATE_CALIFICACIONES);
-            ps.setDouble(1, dto.getNota_p1());
-            ps.setDouble(2, dto.getNota_p2());
-            ps.setDouble(3, dto.getNota_p3());
-            ps.setDouble(4, dto.getNota_final());
-            ps.setInt(5, dto.getAnio_mat_fk());
-            ps.setInt(6, dto.getId_alumno_fk());
-            ps.setInt(7, dto.getCodasignatura_fk());
-            ps.executeUpdate();
+            if (conexion!=null){
+                ps = (PreparedStatement) conexion.prepareStatement(SQL_UPDATE_CALIFICACIONES);
+                ps.setDouble(1, dto.getNota_p1());
+                ps.setDouble(2, dto.getNota_p2());
+                ps.setDouble(3, dto.getNota_p3());
+                ps.setDouble(4, dto.getNota_final());
+                ps.setInt(5, dto.getAnio_mat_fk());
+                ps.setInt(6, dto.getId_alumno_fk());
+                ps.setInt(7, dto.getCodasignatura_fk());
+                ps.executeUpdate();
+            }
         } finally {
             cerrar(ps);
         }
 
-    }
-
-
-    private void cerrar(PreparedStatement ps) throws SQLException {
-        if (ps != null) {
-            try {
-                ps.close();
-            } catch (SQLException e) {
-                System.out.println("Problema al cerrar PreparedStatement: "+e.getMessage());
-            }
-        }
     }
 
 
