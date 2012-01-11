@@ -1,6 +1,6 @@
 package es.uma.masterinftel.colegio_inftel.vistas;
 
-import es.uma.masterinftel.colegio_inftel.modelo.dao.IncidenciasDAO;
+import es.uma.masterinftel.colegio_inftel.modelo.dao.MatriculacionesDAO;
 import java.awt.event.ActionListener;
 
 /*
@@ -20,9 +20,12 @@ import java.awt.event.ActionListener;
  */
 public class AnotarIncidenciasVista extends javax.swing.JDialog {
 
-    private IncidenciasDAO modelo;
+    private MatriculacionesDAO modelo;
+    private Integer anio_mat;
+    private Integer id_alumno;
+
     /** Creates new form AnotarIncidenciasVista */
-    public AnotarIncidenciasVista(IncidenciasDAO modelo,java.awt.Frame parent, boolean modal) {
+    public AnotarIncidenciasVista(MatriculacionesDAO modelo,java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         this.modelo= modelo;
         initComponents();
@@ -264,7 +267,7 @@ public class AnotarIncidenciasVista extends javax.swing.JDialog {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                AnotarIncidenciasVista dialog = new AnotarIncidenciasVista(new IncidenciasDAO(),new javax.swing.JFrame(), true);
+                AnotarIncidenciasVista dialog = new AnotarIncidenciasVista(new MatriculacionesDAO(),new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
@@ -335,12 +338,30 @@ public class AnotarIncidenciasVista extends javax.swing.JDialog {
     public void setSanciones(int sanciones){
         sancionesText.setText(new Integer(sanciones).toString());
     }
+    public void setComentarios(String comentario){
+        comentariosTextArea.setText(comentario);
+    }
     public void addConfirmarListener(ActionListener a){
         btnGuardar.addActionListener(a);
 
     }
     public void addCancelarListener(ActionListener a){
         btnCerrar.addActionListener(a);
+    }
+        public Integer getAnio_mat() {
+        return anio_mat;
+    }
+
+    public Integer getId_alumno() {
+        return id_alumno;
+    }
+
+    public void setAnio_mat(Integer anio_mat) {
+        this.anio_mat = anio_mat;
+    }
+
+    public void setId_alumno(Integer id_alumno) {
+        this.id_alumno = id_alumno;
     }
 
 }
