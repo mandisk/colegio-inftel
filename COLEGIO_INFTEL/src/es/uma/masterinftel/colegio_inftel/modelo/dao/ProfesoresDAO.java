@@ -17,7 +17,7 @@ import java.sql.Connection;
  */
 public class ProfesoresDAO {
 
-    
+
 
     public ProfesoresDTO findProfesorByUsuario(String usuario) {
 
