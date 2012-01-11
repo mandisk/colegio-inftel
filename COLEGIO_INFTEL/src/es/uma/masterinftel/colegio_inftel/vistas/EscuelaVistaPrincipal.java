@@ -385,7 +385,6 @@ public class EscuelaVistaPrincipal extends javax.swing.JFrame {
 
     public void setRolJefeDeEstudios(Integer rolUsuario) {
         bJefeDeEstudios = (rolUsuario == Constantes.ROL_JEFE_DE_ESTUDIOS);
-        System.out.println("bJefeDeEstudios: " + bJefeDeEstudios);
     }
 
 }
