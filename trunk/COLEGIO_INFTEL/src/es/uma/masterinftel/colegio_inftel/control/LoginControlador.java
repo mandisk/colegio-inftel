@@ -62,10 +62,10 @@ public class LoginControlador {
         EscuelaControlador next_controlador = new EscuelaControlador(next_modelo,next_vista);
         
         m_vista.setVisible(false);
-
+        next_vista.setRolJefeDeEstudios(rol);               
         next_vista.setVisible(true);
         
-        next_vista.setRolJefeDeEstudios(rol);
+        
     }
         
     class AceptarListener implements ActionListener {
