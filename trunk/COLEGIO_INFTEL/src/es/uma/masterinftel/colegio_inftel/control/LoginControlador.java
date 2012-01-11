@@ -7,6 +7,7 @@ package es.uma.masterinftel.colegio_inftel.control;
 import es.uma.masterinftel.colegio_inftel.modelo.dao.*;
 import es.uma.masterinftel.colegio_inftel.modelo.dto.*;
 import es.uma.masterinftel.colegio_inftel.vistas.*;
+import es.uma.masterinftel.colegio_inftel.utilidades.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -20,8 +21,10 @@ import java.security.MessageDigest;
  */
 public class LoginControlador {
     
-    private ProfesoresDAO   m_modelo;
-    private LoginVista   m_vista;
+    private ProfesoresDAO  m_modelo;
+    private LoginVista     m_vista;
+    
+    private RolProfesorDAO m_rol = new RolProfesorDAO();
     
     
     public LoginControlador(ProfesoresDAO modelo, LoginVista vista){
@@ -53,12 +56,13 @@ public class LoginControlador {
         return h.toString();
     }
      
-    private void navegacion() {
+    private void navegacion(Integer rol) {
         EscuelaModeloDAO next_modelo = new EscuelaModeloDAO();
         EscuelaVistaPrincipal next_vista = new EscuelaVistaPrincipal(next_modelo);
         EscuelaControlador next_controlador = new EscuelaControlador(next_modelo,next_vista);
         
         m_vista.setVisible(false);
+        next_vista.setRolJefeDeEstudios(rol);
         next_vista.setVisible(true);
     }
         
@@ -103,8 +107,9 @@ public class LoginControlador {
                             if (profesor != null) {
                                 bTest = md5(pass).equals(profesor.getPassword());
                                 if (bTest) {
-                                    // El usuario es válido y se inicia la navegación
-                                    navegacion();
+                                    // El usuario es válido
+                                    RolProfesorDTO rolProfesor = m_rol.findRolByProfesorId(profesor.getId());
+                                    navegacion(rolProfesor.getId_rol_fk());
                                 }
                                 else
                                     m_vista.printMensajeUserPassIncorrectos();
