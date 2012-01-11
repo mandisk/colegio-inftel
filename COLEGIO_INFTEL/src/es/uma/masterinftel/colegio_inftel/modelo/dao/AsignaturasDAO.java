@@ -28,7 +28,7 @@ public class AsignaturasDAO extends GenericDAO {
            "SELECT * FROM ASIGNATURAS WHERE profesor_id_fk=?;";
 
 
-    public ArrayList<CursosDTO> obtenerAsignaturas(Connection conn) throws SQLException {
+    public ArrayList<AsignaturasDTO> obtenerAsignaturas(Connection conn) throws SQLException {
 
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -70,7 +70,7 @@ public class AsignaturasDAO extends GenericDAO {
 
 
 
-    public ArrayList<CursosDTO> obtenerAsignaturasByProfesor(Connection conn, Integer id_profesor) throws SQLException {
+    public ArrayList<AsignaturasDTO> obtenerAsignaturasByProfesor(Connection conn, Integer id_profesor) throws SQLException {
 
         PreparedStatement ps = null;
         ResultSet rs = null;
