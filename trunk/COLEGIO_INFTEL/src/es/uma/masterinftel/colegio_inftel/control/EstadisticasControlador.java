@@ -114,7 +114,7 @@ public class EstadisticasControlador {
         while (j.hasNext()) {
             
             asignaturasDTO = (AsignaturasDTO) j.next();
-            Asignatura asignatura = new Asignatura(asignaturasDTO.getDesc(),asignaturasDTO.getCodasignatura().toString());
+            Asignatura asignatura = new Asignatura(asignaturasDTO.getDesc(),asignaturasDTO.getCodasignatura());
             m_vista.asignaturaComboBox.addItem(asignatura);
         }
         Asignatura asignatura = (Asignatura) m_vista.asignaturaComboBox.getSelectedItem();
@@ -132,7 +132,7 @@ public class EstadisticasControlador {
         while (j.hasNext()) {
 
             cursosDTO = (CursosDTO) j.next();
-            Curso curso = new Curso(cursosDTO.getDesc(),cursosDTO.getId().toString());
+            Curso curso = new Curso(cursosDTO.getDesc(),cursosDTO.getId());
             m_vista.cursoComboBox.addItem(curso);
         }
         Curso curso = (Curso) m_vista.asignaturaComboBox.getSelectedItem();
@@ -143,8 +143,53 @@ public class EstadisticasControlador {
     public class Estadistica1Listener implements ActionListener{
 
         public void actionPerformed(ActionEvent e) {
-            throw new UnsupportedOperationException("Not supported yet.");
+            Connection cnn = (Connection) Conexion.conectar();
+            CalificacionesDAO calificacion = new CalificacionesDAO();
+
+        try {
+
+            Asignatura asignatura = (Asignatura) m_vista.asignaturaComboBox.getSelectedItem();
+            Curso curso = (Curso) m_vista.cursoComboBox.getSelectedItem();
+            Integer numAprobados = null;
+                try {
+                    numAprobados = calificacion.numAprobados(cnn, asignatura.getId(),
+                                                            (Integer) m_vista.getAnioMatriculadosComboBox().getSelectedItem(),
+                                                            curso.getId());
+                } catch (SQLException ex) {
+                    Logger.getLogger(EstadisticasControlador.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            Integer numMatriculados = calificacion.numMatriculados(cnn,asignatura.getId(),
+                                                                  (Integer) m_vista.getAnioMatriculadosComboBox().getSelectedItem(),
+                                                                  (Integer) curso.getId());
+
+            float porcAprobados = ((float) numAprobados / (float) numMatriculados) * 100;
+            float porcSuspensos = (((float) numMatriculados - (float) numAprobados) / (float) numMatriculados) * 100;
+
+            //Crear un dataset
+            DefaultPieDataset data = new DefaultPieDataset();
+            data.setValue("Aprobados", porcAprobados);
+            data.setValue("Suspensos", porcSuspensos);
+
+            //Creamos un Chart
+            JFreeChart chart = ChartFactory.createPieChart(
+                    "(%) Aprobados y Suspensos en "
+                    + m_vista.asignaturaComboBox.getSelectedItem()
+                    + " de "+ m_vista.cursoComboBox.getSelectedItem()+" ("
+                    + m_vista.getAnioMatriculadosComboBox().getSelectedItem() + ")", //Títrulo del gráfico
+                    data,
+                    true,//Leyenda
+                    true,//ToolTips
+                    true);
+            //Creamos una especie de frame y mostramos el JFreeChart en él
+            //Este constructor nos pide el título del Chart y el chart creado
+            ChartFrame frame = new ChartFrame("Primer Chart para javax0711", chart);
+            frame.pack();
+            frame.setVisible(true);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this,
+                    "Se ha producido un error de Base de Datos");
         }
+     }
 
     }
     public class Estadistica2Listener implements ActionListener{
