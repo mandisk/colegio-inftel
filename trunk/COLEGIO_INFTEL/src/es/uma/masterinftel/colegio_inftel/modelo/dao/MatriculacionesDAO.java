@@ -11,6 +11,8 @@ import es.uma.masterinftel.colegio_inftel.modelo.dto.MatriculacionesDTO;
 import es.uma.masterinftel.colegio_inftel.utilidades.Conexion;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -21,12 +23,15 @@ public class MatriculacionesDAO extends GenericDAO {
     public static final String SQL_SELECT_ANIO_MATRICULACION =
            "SELECT MAX(anio_mat) FROM MATRICULACIONES;";
 
-     public static final String SQL_UPDATE_INCIDENCIAS =
+    public static final String SQL_UPDATE_INCIDENCIAS =
            "UPDATE MATRICULACIONES SET " +
            "faltas_acumuladas = ?, retardos = ?, saciones = ?, observaciones = ? " +
            "WHERE " +
            "anio_mat = ? AND " +
            "id_alumno_fk = ?";
+
+    public static final String SQL_ANIOS_MATRICULACIONES =
+            "SELECT DISTINCT(anio_mat) FROM MATRICULACIONES;";
 
 
     public void update(MatriculacionesDTO dto, Connection conexion) throws SQLException{
@@ -73,25 +78,61 @@ public class MatriculacionesDAO extends GenericDAO {
     }
 
 
+    public List<Integer> obtener_anios_matriculaciones(Connection conexion) throws SQLException {
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<Integer> anios = new ArrayList<Integer>();
+
+        try {
+            ps = (PreparedStatement) conexion.prepareStatement(SQL_ANIOS_MATRICULACIONES);
+
+            rs = ps.executeQuery();
+
+            while(rs.next()){
+                anios.add(rs.getInt(1));
+            }
+
+  
+        } finally {
+            cerrar(ps);
+            cerrar(rs);
+        }
+
+        return anios;
+        
+    }
+
+
 
 
     public static void main(String[] args) throws SQLException{
         System.out.println("Probando MatriculacionesDAO....");
 
+        ArrayList<Integer> prueba;
         
         Connection cnn = (Connection) Conexion.conectar();
 
         MatriculacionesDAO mat = new MatriculacionesDAO();
 
+        prueba=(ArrayList) mat.obtener_anios_matriculaciones(cnn);
+
+        System.out.println("Tamaño: "+prueba.size());
+        for(Integer i: prueba){
+            System.out.println(i);
+        }
+  
         System.out.println("AÑO ESCOLAR: "+mat.obtener_anio_matricula(cnn));
 
-
-        //Probar actualizacion MatriculacionesDAO
+      //Probar actualizacion MatriculacionesDAO
 
         System.out.println("Probando MatriculacionesDAO....");
 
         MatriculacionesDTO dto = new MatriculacionesDTO();
         MatriculacionesDAO incidencia = new MatriculacionesDAO();
+
+
+
 
         //creacion de un DTO de prueba existente en BD
         dto.setAnio_mat(2011);
