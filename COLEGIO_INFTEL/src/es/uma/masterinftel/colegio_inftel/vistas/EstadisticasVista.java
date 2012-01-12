@@ -409,6 +409,9 @@ EstadisticasVista vista;
     public JComboBox getProfesorComboBox(){
         return profesorComboBox;
     }
+     public JComboBox getAnioMatriculadosComboBox(){
+        return anioMatriculadosComboBox;
+    }
 //    public int getAnioCurso(){
 //        return new Integer(anioCursoComboBox.getSelectedItem().toString());
 //    }
