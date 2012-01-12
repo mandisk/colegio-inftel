@@ -365,13 +365,13 @@ public class EstadisticasVista extends javax.swing.JDialog {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox anioMatriculadosComboBox;
-    private javax.swing.JComboBox asignaturaComboBox;
+    public javax.swing.JComboBox anioMatriculadosComboBox;
+    public javax.swing.JComboBox asignaturaComboBox;
     private javax.swing.JButton btnEstadistica1;
     private javax.swing.JButton btnEstadistica2;
     private javax.swing.JButton btnEstadistica3;
     private javax.swing.JButton btnEstadistica4;
-    private javax.swing.JComboBox cursoComboBox;
+    public javax.swing.JComboBox cursoComboBox;
     private static javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -385,7 +385,7 @@ public class EstadisticasVista extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JComboBox profesorComboBox;
+    public javax.swing.JComboBox profesorComboBox;
     // End of variables declaration//GEN-END:variables
 
     public String getAsignatura(){
