@@ -12,6 +12,10 @@ import es.uma.masterinftel.colegio_inftel.utilidades.Profesor;
 import es.uma.masterinftel.colegio_inftel.vistas.EstadisticasVista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -64,8 +68,13 @@ public class EstadisticasControlador {
 
             Profesor profesor = (Profesor) m_vista.getProfesorComboBox().getSelectedItem();
 
-            Integer numAprobados = calificacion.numAprobados(cnn, profesor.id, (Integer) comboAnios.getSelectedItem());
-            Integer numMatriculados = calificacion.numMatriculados(cnn, profesor.id, (Integer) comboAnios.getSelectedItem());
+            Integer numAprobados = null;
+                try {
+                    numAprobados = calificacion.numAprobados(cnn, profesor.id, (Integer) m_vista.getAnioMatriculadosComboBox().getSelectedItem());
+                } catch (SQLException ex) {
+                    Logger.getLogger(EstadisticasControlador.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            Integer numMatriculados = calificacion.numMatriculados(cnn, profesor.id, (Integer) m_vista.getAnioMatriculadosComboBox().getSelectedItem());
 
             float porcAprobados = ((float) numAprobados / (float) numMatriculados) * 100;
             float porcSuspensos = (((float) numMatriculados - (float) numAprobados) / (float) numMatriculados) * 100;
@@ -78,8 +87,8 @@ public class EstadisticasControlador {
             //Creamos un Chart
             JFreeChart chart = ChartFactory.createPieChart(
                     "(%) Aprobados y Suspensos de "
-                    + comboProfesores.getSelectedItem() + " ("
-                    + comboAnios.getSelectedItem() + ")", //Títrulo del gráfico
+                    + m_vista.getProfesorComboBox().getSelectedItem() + " ("
+                    + m_vista.getAnioMatriculadosComboBox().getSelectedItem() + ")", //Títrulo del gráfico
                     data,
                     true,//Leyenda
                     true,//ToolTips
