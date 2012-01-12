@@ -40,11 +40,8 @@ public class EstadisticasVista extends javax.swing.JDialog {
     /** Creates new form EstadisticasVista */
     public EstadisticasVista(java.awt.Frame parent, boolean modal) throws SQLException {
         super(parent, modal);
-        ArrayList anios = new ArrayList();
-        ArrayList profesores = new ArrayList();
         initComponents();
-        cargarCombosAnio(anios);
-        cargarComboProfesores(profesores);
+        
     }
 
     /** This method is called from within the constructor to
@@ -428,44 +425,5 @@ EstadisticasVista vista;
         btnEstadistica4.addActionListener(a);
     }
     
-    //método para cargar combos
-
-    //método para cargar combo años matriculacion
-    public void cargarCombosAnio( ArrayList anios) throws SQLException, SQLException{
-        //CARGA DEL COMBO AÑOS MATRICULACION
-        MatriculacionesDAO matriculacionesDAO = new MatriculacionesDAO();
-        Connection cnn = (Connection) Conexion.conectar();
-        anios = (ArrayList) matriculacionesDAO.obtener_anios_matriculaciones(cnn);
-
-        Iterator i = anios.iterator();
-        while (i.hasNext()) {
-
-            Integer x = (Integer) i.next();
-            anioMatriculadosComboBox.addItem(new Integer(x));
-        }
-
-        //Seleccionamos por defecto el año en curso
-        anioMatriculadosComboBox.setSelectedIndex(anios.size() - 1);
-        
-    }
-    //método para cargar combo profesores
-    public void cargarComboProfesores(ArrayList profesores) throws SQLException{
-
-         // CARGA DEL COMBO PROFESORES
-        ProfesoresDAO profesoresDAO = new ProfesoresDAO();
-        profesores = profesoresDAO.obtenerProfesores();
-        Iterator j = profesores.iterator();
-        ProfesoresDTO profesoresDTO = new ProfesoresDTO();
-
-        while (j.hasNext()) {
-            Profesor profesor = new Profesor();
-            profesoresDTO = (ProfesoresDTO) j.next();
-            profesor.nombre = profesoresDTO.getNombre() + " " + profesoresDTO.getApellido1() + " " + profesoresDTO.getApellido2();
-            profesor.id = profesoresDTO.getId();
-            profesorComboBox.addItem(profesor);
-        }
-
-        Profesor profesor = (Profesor) profesorComboBox.getSelectedItem();
-        System.out.println("ID: " + profesor.id);
-    }
+   
 }
