@@ -8,10 +8,10 @@
  *
  * Created on 12-ene-2012, 0:28:39
  */
-
 package colegio_inftel;
 
 import com.mysql.jdbc.Connection;
+import es.uma.masterinftel.colegio_inftel.modelo.dao.CalificacionesDAO;
 import es.uma.masterinftel.colegio_inftel.modelo.dao.MatriculacionesDAO;
 import es.uma.masterinftel.colegio_inftel.modelo.dao.ProfesoresDAO;
 import es.uma.masterinftel.colegio_inftel.modelo.dto.ProfesoresDTO;
@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
 import org.jfree.chart.JFreeChart;
@@ -37,24 +38,22 @@ public class main_estadisticas extends javax.swing.JFrame {
      * Clase para poder cargar el combo con objetos profesor
      */
     class Profesor {
+
         public Integer id;
-        public String  nombre;
+        public String nombre;
 
-
-        public boolean equals(Profesor p){
-          if(p.nombre.compareTo(this.nombre) == 0){
-              return true;
-          }else{
-              return false;
-          }
+        public boolean equals(Profesor p) {
+            if (p.nombre.compareTo(this.nombre) == 0) {
+                return true;
+            } else {
+                return false;
+            }
         }
-
 
         @Override
-        public String toString(){
+        public String toString() {
             return nombre;
         }
-
     }
 
     /** Creates new form main_estadisticas */
@@ -68,18 +67,18 @@ public class main_estadisticas extends javax.swing.JFrame {
         MatriculacionesDAO matriculacionesDAO = new MatriculacionesDAO();
         Connection cnn = (Connection) Conexion.conectar();
 
-        anios=(ArrayList) matriculacionesDAO.obtener_anios_matriculaciones(cnn);
+        anios = (ArrayList) matriculacionesDAO.obtener_anios_matriculaciones(cnn);
 
-        
+
         Iterator i = anios.iterator();
-        while(i.hasNext()){
+        while (i.hasNext()) {
             Integer x = (Integer) i.next();
             comboAnios.addItem(new Integer(x));
         }
 
 
         //Seleccionamos por defecto el año en curso
-        comboAnios.setSelectedIndex(anios.size()-1);
+        comboAnios.setSelectedIndex(anios.size() - 1);
 
 
 
@@ -89,16 +88,16 @@ public class main_estadisticas extends javax.swing.JFrame {
         Iterator j = profesores.iterator();
         ProfesoresDTO profesoresDTO = new ProfesoresDTO();
 
-        while(j.hasNext()){
+        while (j.hasNext()) {
             Profesor profesor = new Profesor();
-            profesoresDTO =  (ProfesoresDTO) j.next();
-            profesor.nombre = profesoresDTO.getNombre()+" "+profesoresDTO.getApellido1()+" "+profesoresDTO.getApellido2();
+            profesoresDTO = (ProfesoresDTO) j.next();
+            profesor.nombre = profesoresDTO.getNombre() + " " + profesoresDTO.getApellido1() + " " + profesoresDTO.getApellido2();
             profesor.id = profesoresDTO.getId();
             comboProfesores.addItem(profesor);
         }
 
         Profesor profesor = (Profesor) comboProfesores.getSelectedItem();
-        System.out.println("ID: "+profesor.id);
+        System.out.println("ID: " + profesor.id);
 
 
     }
@@ -127,11 +126,22 @@ public class main_estadisticas extends javax.swing.JFrame {
             }
         });
 
+        comboAnios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboAniosActionPerformed(evt);
+            }
+        });
+
         jLabel1.setText("Año Matriculación");
 
         comboProfesores.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 comboProfesoresItemStateChanged(evt);
+            }
+        });
+        comboProfesores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboProfesoresActionPerformed(evt);
             }
         });
 
@@ -143,9 +153,6 @@ public class main_estadisticas extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(112, 112, 112)
-                        .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -160,7 +167,10 @@ public class main_estadisticas extends javax.swing.JFrame {
                                 .addComponent(comboProfesores, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(20, 20, 20)
-                                .addComponent(jLabel2)))))
+                                .addComponent(jLabel2))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(109, 109, 109)
+                        .addComponent(jButton1)))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -174,37 +184,53 @@ public class main_estadisticas extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(comboAnios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboProfesores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50)
+                .addGap(27, 27, 27)
                 .addComponent(jButton1)
-                .addContainerGap(166, Short.MAX_VALUE))
+                .addContainerGap(189, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-        
 
+        Connection cnn = (Connection) Conexion.conectar();
 
-        //Crear un dataset
-        DefaultPieDataset data = new DefaultPieDataset();
-        data.setValue("Aprobados",43.2);
-        data.setValue("Suspensos",27.9);
-       
-        //Creamos un Chart
-        JFreeChart chart = ChartFactory.createPieChart(
-                           "(%) Aprobados y Suspensos en Matemáticas de 1º E.S.O ", //Títrulo del gráfico
-                           data,
-                           true,//Leyenda
-                           true,//ToolTips
-                           true);
-        //Creamos una especie de frame y mostramos el JFreeChart en él
-        //Este constructor nos pide el título del Chart y el chart creado
-        ChartFrame frame=new ChartFrame("Primer Chart para javax0711",chart);
-        frame.pack();
-        frame.setVisible(true);
+        CalificacionesDAO calificacion = new CalificacionesDAO();
 
+        try {
+
+            Profesor profesor = (Profesor) comboProfesores.getSelectedItem();
+
+            Integer numAprobados = calificacion.numAprobados(cnn, profesor.id, (Integer) comboAnios.getSelectedItem());
+            Integer numMatriculados = calificacion.numMatriculados(cnn, profesor.id, (Integer) comboAnios.getSelectedItem());
+
+            float porcAprobados = ((float) numAprobados / (float) numMatriculados) * 100;
+            float porcSuspensos = (((float) numMatriculados - (float) numAprobados) / (float) numMatriculados) * 100;
+
+            //Crear un dataset
+            DefaultPieDataset data = new DefaultPieDataset();
+            data.setValue("Aprobados", porcAprobados);
+            data.setValue("Suspensos", porcSuspensos);
+
+            //Creamos un Chart
+            JFreeChart chart = ChartFactory.createPieChart(
+                    "(%) Aprobados y Suspensos de "
+                    + comboProfesores.getSelectedItem() + " ("
+                    + comboAnios.getSelectedItem() + ")", //Títrulo del gráfico
+                    data,
+                    true,//Leyenda
+                    true,//ToolTips
+                    true);
+            //Creamos una especie de frame y mostramos el JFreeChart en él
+            //Este constructor nos pide el título del Chart y el chart creado
+            ChartFrame frame = new ChartFrame("Primer Chart para javax0711", chart);
+            frame.pack();
+            frame.setVisible(true);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this,
+                    "Se ha producido un error de Base de Datos");
+        }
 
 
 
@@ -214,15 +240,24 @@ public class main_estadisticas extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         Profesor profesor = (Profesor) comboProfesores.getSelectedItem();
-        System.out.println("ID: "+profesor.id);
+        System.out.println("ID: " + profesor.id);
 
     }//GEN-LAST:event_comboProfesoresItemStateChanged
 
+    private void comboProfesoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboProfesoresActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboProfesoresActionPerformed
+
+    private void comboAniosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboAniosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboAniosActionPerformed
+
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
                 try {
                     new main_estadisticas().setVisible(true);
@@ -234,7 +269,6 @@ public class main_estadisticas extends javax.swing.JFrame {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox comboAnios;
     private javax.swing.JComboBox comboProfesores;
@@ -242,5 +276,4 @@ public class main_estadisticas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
-
 }
