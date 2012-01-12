@@ -5,18 +5,22 @@
 //package colegio_inftel;
 
 package es.uma.masterinftel.colegio_inftel.control;
-import es.uma.masterinftel.colegio_inftel.control.AnotarNotasControlador;
+
+import es.uma.masterinftel.colegio_inftel.modelo.dao.MatriculacionesDAO;
+//import java.sql.Connection;
+import com.mysql.jdbc.Connection;
 import es.uma.masterinftel.colegio_inftel.modelo.dao.CalificacionesDAO;
 import es.uma.masterinftel.colegio_inftel.vistas.AnotarNotasVista;
 import es.uma.masterinftel.colegio_inftel.modelo.dao.EscuelaModeloDAO;
 import es.uma.masterinftel.colegio_inftel.vistas.EscuelaVistaPrincipal;
 import java.awt.event.*;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableRowSorter;
 import javax.swing.table.TableModel;
 import javax.swing.RowFilter;
 import javax.swing.event.DocumentListener;
 import javax.swing.event.DocumentEvent;
+import es.uma.masterinftel.colegio_inftel.modelo.dto.EscuelaModeloDTO;
+import es.uma.masterinftel.colegio_inftel.utilidades.Conexion;
+//import es.uma.masterinftel.colegio_inftel.modelo.dao.NotasDAO;
 /**
  *
  * @author Proyectos
@@ -26,6 +30,11 @@ public class EscuelaControlador {
     //Necesitamos que el controlador interactue con el Modelo y la vista
     private EscuelaModeloDAO m_modelo;
     private EscuelaVistaPrincipal m_vista;
+    
+    //Variables inicializadas
+    int curso=1;
+    int grupo=1;
+    int asignatura=1;
 
     //Formulario Anotar Calificaciones
     protected CalificacionesDAO        m_calificaciones;
@@ -49,23 +58,27 @@ public class EscuelaControlador {
         vista.addSearchListener(new SearchListener());
         vista.addFilterName(new FilterListener());
         vista.addAnotarNotasListener(new CalificacionesListener());
+      //  vista.addTableListener(new GetTableListener());
     }
     
     class SearchListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            int curso;
-            int grupo;
-            int asignatura;
             int[] valasig = {0,5,10,15,20,25};
-            //DefaultTableModel modelo = new DefaultTableModel();
-           
+            EscuelaModeloDTO dto = new EscuelaModeloDTO();
+           //Hay que utilizar getItem()
             curso = m_vista.getCurso();
             grupo = m_vista.getGrupo();
             asignatura = m_vista.getAsignatura();
-            m_modelo.rellenaTabla(curso, grupo,valasig[curso-1]+asignatura);
-            //m_modelo.rellenaTabla(2,1,6);
-            
-            
+            dto.setId_cursos_fk(curso);
+            dto.setId_grupo_kf(grupo);
+            dto.setCodasignatura_fk(valasig[curso-1]+asignatura);
+            m_modelo.rellenaTabla(dto);
+            //Ocultamos columna id
+            m_vista.jTable1.getColumnModel().getColumn(10).setMaxWidth(0);
+            m_vista.jTable1.getColumnModel().getColumn(10).setMinWidth(0);
+            m_vista.jTable1.getColumnModel().getColumn(10).setPreferredWidth(0);
+            //Hay que activar rellenaTabla
+            // m_modelo.rellenaTabla(curso, grupo,valasig[curso-1]+asignatura);     
         }
     }
      class FilterListener implements DocumentListener {
@@ -81,7 +94,6 @@ public class EscuelaControlador {
      private void newFilter() {
        m_vista.jTable1.setRowSorter(m_modelo.sorter);
          RowFilter<TableModel, Object> rf = null;
-        //If current expression doesn't parse, don't update.
         try {
             rf = RowFilter.regexFilter(m_vista.getNombre(),0,1,2);
         } catch (java.util.regex.PatternSyntaxException e) {
@@ -91,7 +103,7 @@ public class EscuelaControlador {
     }
       
   }
-
+    
     /**
      * Clase listener para ejecutar la acción del botón Editar Calificaiones
      * 
@@ -101,23 +113,40 @@ public class EscuelaControlador {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            Connection cnn = (Connection) Conexion.conectar();
+            int filaselect = m_vista.getFila();
+            int idAlumno = (Integer)m_vista.getTableData(filaselect, 10);
+            String nombre = (String)m_vista.getTableData(filaselect, 0);
+            String apellido1 = (String)m_vista.getTableData(filaselect, 1) ;
+            String apellido2 = (String)m_vista.getTableData(filaselect, 2);
+            String nota1 = (m_vista.getTableData(filaselect, 6)).toString();
+            String nota2 = (m_vista.getTableData(filaselect, 7)).toString();
+            String nota3 = (m_vista.getTableData(filaselect, 8)).toString();
+            String notaFinal = (m_vista.getTableData(filaselect, 9)).toString();
+            MatriculacionesDAO objMatricula = new MatriculacionesDAO();
+            int anioMatricula;
+            try{
+            anioMatricula = objMatricula.obtener_anio_matricula(cnn);
             System.out.println("Pulsado");
+            
+            v_calificaciones.setAnio_mat(anioMatricula);
+            v_calificaciones.setId_alumno(idAlumno);
+      //      v_calificaciones.setCodasignatura(dto.getCodasignatura_fk());
 
-            v_calificaciones.setAnio_mat(2007);
-            v_calificaciones.setId_alumno(31);
-            v_calificaciones.setCodasignatura(1);
-
-            v_calificaciones.setAlumno("Agustín Pereña");
+            v_calificaciones.setAlumno(nombre+" "+apellido1);
             v_calificaciones.setGrupo("C");
             v_calificaciones.setAsignatura("Matemáticas");
             v_calificaciones.setCurso("4º de ESO");
-            v_calificaciones.setNota1("7.0");
-            v_calificaciones.setNota2("7.0");
-            v_calificaciones.setNota3("7.0");
-            v_calificaciones.setNotaFinal("7.0");
+            v_calificaciones.setNota1(nota1);
+            v_calificaciones.setNota2(nota2);
+            v_calificaciones.setNota3(nota3);
+            v_calificaciones.setNotaFinal(notaFinal);
 
             v_calificaciones.setVisible(true);
+             } catch (Exception ev)
+        {
+            ev.printStackTrace();
+        }
         }
 
     }
