@@ -54,6 +54,16 @@ public class CalificacionesDAO extends GenericDAO {
             "AND B.NOTA_FINAL >= 5 "+
             "ORDER BY B.ID_ALUMNO_FK; ";
 
+
+    public static final String SQL_MATRICULADOS_ASIG_PROFESOR =
+            "SELECT COUNT(B.ID_ALUMNO_FK) AS APROBADOS " +
+            "FROM ASIGNATURAS A, CALIFICACIONES B "+
+            "WHERE A.CODASIGNATURA = B.CODASIGNATURA_FK "+
+            "AND A.PROFESOR_ID_FK = ? "+
+            "AND B.ANIO_MAT_FK = ? "+
+            "ORDER BY B.ID_ALUMNO_FK; ";
+
+
     public Integer numAprobados(Connection cnn, Integer codasignatura, Integer anio_mat, Integer id_curso)
                                 throws SQLException{
 
@@ -130,6 +140,33 @@ public class CalificacionesDAO extends GenericDAO {
         return aprobados;
     }
 
+
+
+    public Integer numMatriculados(Connection cnn, Integer id_profesor, Integer anio_mat)
+                                throws SQLException{
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Integer aprobados = 0;
+
+        try {
+            ps = (PreparedStatement) cnn.prepareStatement(SQL_MATRICULADOS_ASIG_PROFESOR);
+            ps.setInt(1, id_profesor);
+            ps.setInt(2, anio_mat);
+            rs = ps.executeQuery();
+
+            if( rs.next() ){
+                aprobados = rs.getInt(1);
+            }
+        } finally {
+            cerrar(ps);
+            cerrar(rs);
+        }
+
+        return aprobados;
+    }
+
+
     public void update(CalificacionesDTO dto, Connection conexion) throws SQLException{
         PreparedStatement ps = null;
         try {
@@ -167,6 +204,8 @@ public class CalificacionesDAO extends GenericDAO {
         System.out.println("MATRICULADOS: "+calificacion.numMatriculados(cnn, 1, 2012, 1));
 
         System.out.println("APROBADOSxPROFESOR(1): "+calificacion.numAprobados(cnn, 1, 2012)  );
+        System.out.println("MATRICULADOSxPROFESOR(1) "+calificacion.numMatriculados(cnn, 1, 2012));
+
 
         //creacion de un DTO de prueba existente en BD
         dto.setAnio_mat_fk(2011);
