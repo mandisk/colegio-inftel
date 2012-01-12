@@ -183,8 +183,11 @@ public class main_estadisticas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-                                //Crear un dataset
+        
+        
+
+
+        //Crear un dataset
         DefaultPieDataset data = new DefaultPieDataset();
         data.setValue("Aprobados",43.2);
         data.setValue("Suspensos",27.9);

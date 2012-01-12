@@ -36,6 +36,14 @@ public class CalificacionesDAO extends GenericDAO {
             "AND   D.ANIO_MAT_FK = ? "+
             "ORDER BY A.ID_ALUMNO_FK; ";
 
+    public static final String SQL_MATRICULADOS =
+            "SELECT COUNT(DISTINCT A.ID_ALUMNO_FK) AS APROBADOS "+
+            "FROM  MATRICULACIONES A, CALIFICACIONES D "+
+            "WHERE A.ID_ALUMNO_FK = D.ID_ALUMNO_FK "+
+            "AND   A.ID_CURSOS_FK = ? "+
+            "AND   D.CODASIGNATURA_FK = ? "+
+            "AND   D.ANIO_MAT_FK = ? "+
+            "ORDER BY A.ID_ALUMNO_FK;";
 
     public Integer numAprobados(Connection cnn, Integer codasignatura, Integer anio_mat, Integer id_curso)
                                 throws SQLException{
@@ -62,6 +70,31 @@ public class CalificacionesDAO extends GenericDAO {
         return aprobados;
     }
 
+
+    public Integer numMatriculados(Connection cnn, Integer codasignatura, Integer anio_mat, Integer id_curso)
+                                throws SQLException{
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Integer aprobados = 0;
+
+        try {
+            ps = (PreparedStatement) cnn.prepareStatement(SQL_MATRICULADOS);
+            ps.setInt(1, id_curso);
+            ps.setInt(2, codasignatura);
+            ps.setInt(3, anio_mat);
+            rs = ps.executeQuery();
+
+            if( rs.next() ){
+                aprobados = rs.getInt(1);
+            }
+        } finally {
+            cerrar(ps);
+            cerrar(rs);
+        }
+
+        return aprobados;
+    }
 
     public void update(CalificacionesDTO dto, Connection conexion) throws SQLException{
         PreparedStatement ps = null;
@@ -97,6 +130,7 @@ public class CalificacionesDAO extends GenericDAO {
         CalificacionesDAO calificacion = new CalificacionesDAO();
 
         System.out.println("APROBADOS: "+calificacion.numAprobados(cnn, 1, 2012, 1));
+        System.out.println("MATRICULADOS: "+calificacion.numMatriculados(cnn, 1, 2012, 1));
 
         //creacion de un DTO de prueba existente en BD
         dto.setAnio_mat_fk(2011);
