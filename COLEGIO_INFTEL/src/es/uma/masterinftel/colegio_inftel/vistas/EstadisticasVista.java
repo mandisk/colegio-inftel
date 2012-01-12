@@ -14,7 +14,9 @@ import com.mysql.jdbc.Connection;
 import es.uma.masterinftel.colegio_inftel.modelo.dao.MatriculacionesDAO;
 import es.uma.masterinftel.colegio_inftel.modelo.dao.ProfesoresDAO;
 import es.uma.masterinftel.colegio_inftel.modelo.dto.ProfesoresDTO;
+import es.uma.masterinftel.colegio_inftel.utilidades.Asignatura;
 import es.uma.masterinftel.colegio_inftel.utilidades.Conexion;
+import es.uma.masterinftel.colegio_inftel.utilidades.Curso;
 import es.uma.masterinftel.colegio_inftel.utilidades.Profesor;
 import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
@@ -85,7 +87,11 @@ public class EstadisticasVista extends javax.swing.JDialog {
 
         jLabel2.setText("Aprobados/suspensos por asignatura y curso");
 
-        asignaturaComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        asignaturaComboBox.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                asignaturaComboBoxItemStateChanged(evt);
+            }
+        });
 
         jLabel3.setText("Asignatura");
 
@@ -96,7 +102,11 @@ public class EstadisticasVista extends javax.swing.JDialog {
             }
         });
 
-        cursoComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cursoComboBox.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cursoComboBoxItemStateChanged(evt);
+            }
+        });
 
         jLabel4.setText("Curso");
 
@@ -310,6 +320,18 @@ public class EstadisticasVista extends javax.swing.JDialog {
         Profesor profesor = (Profesor) profesorComboBox.getSelectedItem();
         System.out.println("ID: " + profesor.id);
     }//GEN-LAST:event_profesorComboBoxItemStateChanged
+
+    private void asignaturaComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_asignaturaComboBoxItemStateChanged
+        // TODO add your handling code here:
+        Asignatura asignatura = (Asignatura) asignaturaComboBox.getSelectedItem();
+        System.out.println("ID: " + asignatura.getId());
+    }//GEN-LAST:event_asignaturaComboBoxItemStateChanged
+
+    private void cursoComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cursoComboBoxItemStateChanged
+        // TODO add your handling code here:
+        Curso curso = (Curso) cursoComboBox.getSelectedItem();
+        System.out.println("ID: " + curso.getId());
+    }//GEN-LAST:event_cursoComboBoxItemStateChanged
 
     /**
      * @param args the command line arguments
