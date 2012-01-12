@@ -7,6 +7,7 @@ package es.uma.masterinftel.colegio_inftel.utilidades;
 import es.uma.masterinftel.colegio_inftel.utilidades.ConfigBD;
 import java.sql.*;
 
+
 /**
  *
  * @author Jesús Barriga
