@@ -342,8 +342,8 @@ public class EstadisticasVista extends javax.swing.JDialog {
        
         //final EstadisticasVista vista;
         java.awt.EventQueue.invokeLater(new Runnable() {
-EstadisticasModelo modelo = new EstadisticasModelo();
-EstadisticasVista vista;
+        EstadisticasModelo modelo = new EstadisticasModelo();
+        EstadisticasVista vista;
             public void run() {
                 EstadisticasVista dialog = new EstadisticasVista(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
