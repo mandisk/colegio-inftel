@@ -9,6 +9,7 @@ import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 import es.uma.masterinftel.colegio_inftel.modelo.dto.MatriculacionesDTO;
 import es.uma.masterinftel.colegio_inftel.utilidades.Conexion;
+import es.uma.masterinftel.colegio_inftel.utilidades.MatriculadosAsignaturas;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -33,7 +34,39 @@ public class MatriculacionesDAO extends GenericDAO {
     public static final String SQL_ANIOS_MATRICULACIONES =
             "SELECT DISTINCT(anio_mat) FROM MATRICULACIONES;";
 
+    public static final String SQL_MATRICULADOS_ASIGNATURAS =
+            "SELECT B.CODASIGNATURA AS 'ASIGNATURA', COUNT(A.ID_ALUMNO_FK) AS 'ALUMNOS' "+
+            "FROM MATRICULACIONES A, ASIGNATURAS B "+
+            "WHERE A.ID_CURSOS_FK = B.IMPARTE_CURSOS_ID_FK "+
+            "AND A.ANIO_MAT = ? "+
+            "GROUP BY B.CODASIGNATURA;";
 
+
+    public ArrayList<MatriculadosAsignaturas> obtenerNumMatriculadosAsignatura(Connection cnn, Integer anio_mat)
+                                throws SQLException{
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        ArrayList<MatriculadosAsignaturas> listaMatriculados = new ArrayList<MatriculadosAsignaturas>();
+
+        try {
+            ps = (PreparedStatement) cnn.prepareStatement(SQL_MATRICULADOS_ASIGNATURAS);
+            ps.setInt(1, anio_mat);
+            rs = ps.executeQuery();
+
+            if( rs.next() ){
+                MatriculadosAsignaturas matriculados = new MatriculadosAsignaturas();
+                matriculados.setCodasignatura(rs.getInt(1));
+                matriculados.setAlumnosMatriculados(rs.getInt(2));
+                listaMatriculados.add(matriculados);
+            }
+        } finally {
+            cerrar(ps);
+            cerrar(rs);
+        }
+
+        return listaMatriculados;
+    }
     public void update(MatriculacionesDTO dto, Connection conexion) throws SQLException{
         PreparedStatement ps = null;
         try {
