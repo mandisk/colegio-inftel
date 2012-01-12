@@ -19,15 +19,27 @@ public class EstadisticasControlador {
     
     /** Constructor */
     public EstadisticasControlador(EstadisticasModelo modelo, EstadisticasVista vista){
-    m_modelo = modelo;
-    m_vista = vista;
-    
-    //Aquí se localizan los métodos de escucha
-    m_vista.addEstadistica1Listener(new Estadistica1Listener());
-    m_vista.addEstadistica2Listener(new Estadistica2Listener());
-    m_vista.addEstadistica3Listener(new Estadistica3Listener());
-    m_vista.addEstadistica4Listener(new Estadistica4Listener());
+        m_modelo = modelo;
+        m_vista = vista;
+
+        //Aquí se localizan los métodos de escucha
+        m_vista.addEstadistica1Listener(new Estadistica1Listener());
+        m_vista.addEstadistica2Listener(new Estadistica2Listener());
+        m_vista.addEstadistica3Listener(new Estadistica3Listener());
+        m_vista.addEstadistica4Listener(new Estadistica4Listener());
+
+        cargarCombos();
     }
+
+
+    private void cargarCombos(){
+
+
+
+
+
+    }
+
 
     public class Estadistica1Listener implements ActionListener{
 
